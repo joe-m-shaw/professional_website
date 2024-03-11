@@ -1,9 +1,136 @@
 ---
-title: "Projects"
+title: "Lab Tests"
 ---
 
-## Project 1
+These are the lab tests I have developed so far in my career, starting with the most recent.
 
-## Project 2
+# Genomic Instability Testing for Ovarian Cancer
 
-## Project 3
+## Description
+
+This was a project to validate the SeqOne HRD test for ovarian cancer. This is the test that allows access to the drug olaparib. Until this project, samples were shipped to the USA for testing by Myriad Genetics.
+
+## Overview
+
+**Outcome:** clinical service
+
+**Timing:** Sept 2023-Dec 2023
+
+**Location:** Manchester Genomic Laboratory Hub
+
+**Technique:** shallow whole genome sequencing (sWGS)
+
+**Code:** [Github repo](https://github.com/joeshaw824/homologous_recombination_deficiency)
+
+## Skills I learned
+
+- How to query an SQL database with R using an ODBC connection.
+- How to parse information from PDFs.
+- How to analyse sWGS data.
+
+# Spinocerebellar Ataxia type 36
+
+## Description
+
+Spinocerebellar Ataxia type 36 (SCA36) is a very rare neurological disorder. To my knowledge, no diagnostic service existed in the world prior to this project. 
+
+## Overview
+
+**Outcome:** clinical service
+
+**Timing:** Nov 2022-July 2023
+
+**Location:** University College London Hospital Neurogenetics Department
+
+**Technique:** repeat-primed PCR and flanking PCR
+
+## Skills I learned
+
+-
+-
+-
+
+# RFC1-Disorder Testing
+
+## Description
+
+Successfully added to the [NHS National Genomic Test Directory](https://www.england.nhs.uk/publication/national-genomic-test-directories/)
+
+## Overview
+
+**Outcome:** clinical service
+
+**Timing:** Jan 2022-July 2023
+
+**Location:** University College London Hospital Neurogenetics Department
+
+**Technique:** multiple repeat-primed PCRs and flanking PCR
+
+## Skills I learned 
+
+- How to apply to the National Directory.
+- How to fully optimise a flanking PCR to detect large amplicons.
+
+# Mosaicism Detection for Rare Skin Disorders
+
+## Description
+
+## Overview
+
+**Outcome:** clinical service
+
+**Timing:** Oct 2021-March 2022
+
+**Location:** North London Genomic Laboratory Hub
+
+**Technique:** droplet digital PCR
+
+## Skills I learned 
+
+- How to automatically audit clinical services using R Markdown scripts
+- How to set data-driven analysis thresholds for ddPCR
+- How to use RMarkdown to generate validation plots and tables
+
+# Non-Invasive Prenatal Diagnosis for Sickle Cell Disease and Rare Genetic Conditions
+
+## Description
+
+## Overview
+
+**Outcome:** publication
+
+**Timing:** September 2019-January 2022
+
+**Location:** North London Genomic Laboratory Hub
+
+**Technique:** droplet digital PCR
+
+**Code:** [Github repo](https://github.com/joeshaw824/ddpcr_nipd)
+
+## Skills I learned 
+
+- How to write code in R.
+- How to write an original research paper.
+- How to collate data and manipulate it in RStudio.
+- How to use version control with Git.
+- How to optimise ddPCR assays.
+
+# Myotonic Dystrophy Type 1
+
+## Description
+
+This was my first validation project, which I began as a trainee clinical scientist
+
+## Overview
+
+**Outcome:** clinical service
+
+**Timing:** July 2018-Jan 2020
+
+**Location:** North London Genomic Laboratory Hub
+
+**Technique:** repeat-primed PCR
+
+## Skills I learned 
+
+- How to write a validation document to the standards of ISO15189

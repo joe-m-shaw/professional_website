@@ -1,0 +1,17 @@
+---
+title: "Publications"
+---
+
+## Papers that I have written
+
+[**Shaw J**]{.underline}, Scotchman E, Paternoster B, Ramos M, Nesbitt S, Sheppard S, Snowsill T, Chitty LS, Chandler N. Non-invasive fetal genotyping for maternal alleles with droplet digital PCR: A comparative study of analytical approaches. Prenat Diagn. 2023 Apr;43(4):477-488. PMID: [36760169](https://pubmed.ncbi.nlm.nih.gov/36760169/).
+
+[**Shaw J**]{.underline}, Scotchman E, Chandler N, Chitty LS. Non-invasive prenatal testing for aneuploidy, copy-number variants and single-gene disorders. Reproduction. 2020 Nov;160(5):A1-A11. PMID: [32130205](https://pubmed.ncbi.nlm.nih.gov/32130205/).
+
+## Papers that I am a co-author on
+
+Dominik N, Magri S, Currò R, Abati E, Facchini S, Corbetta M, Macpherson H, Di Bella D, Sarto E, Stevanovski I, Chintalaphani SR, Akcimen F, Manini A, Vegezzi E, Quartesan I, Montgomery KA, Pirota V, Crespan E, Perini C, Grupelli GP, Tomaselli PJ, Marques W; Genomics England Research Consortium; [**Shaw J**]{.underline}, Polke J, Salsano E, Fenu S, Pareyson D, Pisciotta C, Tofaris GK, Nemeth AH, Ealing J, Radunovic A, Kearney S, Kumar KR, Vucic S, Kennerson M, Reilly MM, Houlden H, Deveson I, Tucci A, Taroni F, Cortese A. Normal and pathogenic variation of RFC1 repeat expansions: implications for clinical diagnosis. Brain. 2023 Dec 1;146(12):5060-5069. PMID: [37450567](https://pubmed.ncbi.nlm.nih.gov/37450567/).
+
+Ronco R, Perini C, Currò R, Dominik N, Facchini S, Gennari A, Simone R, Stuart S, Nagy S, Vegezzi E, Quartesan I, El-Saddig A, Lavin T, Tucci A, Szymura A, Novis De Farias LE, Gary A, Delfeld M, Kandikatla P, Niu N, Tawde S, [**Shaw J**]{.underline}, Polke J, Reilly MM, Wood NW, Crespan E, Gomez C, Chen JYH, Schmahmann JD, Gosal D, Houlden H, Das S, Cortese A. Truncating Variants in RFC1 in Cerebellar Ataxia, Neuropathy, and Vestibular Areflexia Syndrome. Neurology. 2023 Jan 31;100(5):e543-e554. PMID: [36289003](https://pubmed.ncbi.nlm.nih.gov/36289003/).
+
+Scotchman E, [**Shaw J**]{.underline}, Paternoster B, Chandler N, Chitty LS. Non-invasive prenatal diagnosis and screening for monogenic disorders. Eur J Obstet Gynecol Reprod Biol. 2020 Oct;253:320-327. PMID: [32907778](https://pubmed.ncbi.nlm.nih.gov/32907778/).

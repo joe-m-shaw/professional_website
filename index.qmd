@@ -1,19 +1,23 @@
 ---
-title: "About Me"
+title: "Hi there, I'm Joe."
 about:
   id: me
   template: broadside
-  image: img/profile.png
+  image: img/mountain_joe.jpg
 ---
 
-:::{#me}
+I am a clinical scientist in genetics, working in the UK’s National Health Service. 
 
-## Goals
+I specialise in developing new genetic tests for rare diseases and cancer, and I love coding in R!
 
-## Education
+This website is a place to collate the stuff I work on and am interested in.
 
-## Experience
+**Links**
 
-:::
+-   Github: [joeshaw824](https://github.com/joeshaw824)
 
-Thanks for checking out my web site!
+-   ORCiD: [0000-0002-5089-751X](https://orcid.org/0000-0002-5089-751X)
+
+-   HCPC: [my clinical scientist registration](https://www.hcpc-uk.org/check-the-register/professional-registration-detail/?query=CS20980&profession=CS&backtosearchurl=https://www.hcpc-uk.org/check-the-register/register-results/&backtosearchquery=shaw)
+
+-   Email: [joseph.shaw3\@nhs.net]()
