@@ -25,14 +25,14 @@
     "href": "index.html",
     "title": "Hi there, I’m Joe.",
     "section": "",
-    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer, and I love coding in R!\nThis website is a place to collate the stuff I work on and am interested in.\nLinks\n\nGithub: joeshaw824\nORCiD: 0000-0002-5089-751X\nHCPC: my clinical scientist registration\nEmail: joseph.shaw3@nhs.net"
+    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer, and I love coding in R!\nThis website is a place to collate the stuff I work on and am interested in.\njoseph.shaw3@nhs.net"
   },
   {
     "objectID": "education.html",
     "href": "education.html",
-    "title": "Education",
+    "title": "Training and Experience",
     "section": "",
-    "text": "NHS Scientist Training Programme\nNational School of Healthcare Science\nSept 2016-Sept 2019\n\n\nMSc Clinical Science (Genomics)\nUniversity of Manchester\nSept 2016-June 2019\n\n\nBSc with Honours Biomedical Sciences\nUniversity of Edinburgh\nSept 2011 – June 2014"
+    "text": "NHS Scientist Training Programme\nNational School of Healthcare Science | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics)\nUniversity of Manchester | Sept 2016-June 2019\nBSc with Honours Biomedical Sciences\nUniversity of Edinburgh | Sept 2011 – June 2014"
   },
   {
     "objectID": "fun_projects.html",
@@ -53,7 +53,7 @@
     "href": "projects.html",
     "title": "Lab Tests",
     "section": "",
-    "text": "These are the projects I have led so far in my career, starting with the most recent."
+    "text": "These are the lab tests I have developed so far in my career, starting with the most recent."
   },
   {
     "objectID": "projects.html#description",
@@ -81,7 +81,7 @@
     "href": "projects.html#description-1",
     "title": "Lab Tests",
     "section": "Description",
-    "text": "Description\nSpinocerebellar Ataxia type 36 (SCA36) is a very rare neurological disorder. To my knowledge, no diagnostic service existed in the world prior to this project."
+    "text": "Description\nSpinocerebellar Ataxia type 36 (SCA36) is a very rare neurological disorder caused by a hexanucleotide repeat expansion in the NOP56 gene. To my knowledge, no diagnostic service existed in the world prior to this project."
   },
   {
     "objectID": "projects.html#overview-1",
@@ -102,7 +102,7 @@
     "href": "projects.html#description-2",
     "title": "Lab Tests",
     "section": "Description",
-    "text": "Description\nSuccessfully added to the NHS National Genomic Test Directory"
+    "text": "Description\nRFC1-disorder is a neurological disorder caused by repeat expansions in the RFC1 gene, and was first reported in 2019 by Dr Andrea Cortese’s research group at the UCLH Institute for Neurology. For this project we developed a diagnostic service for RFC1 expansions by modifying the research protocol, and we successfully added RFC1 testing to the NHS National Genomic Test Directory."
   },
   {
     "objectID": "projects.html#overview-2",
@@ -116,7 +116,7 @@
     "href": "projects.html#skills-i-learned-2",
     "title": "Lab Tests",
     "section": "Skills I learned",
-    "text": "Skills I learned\n\nHow to apply to the National Directory.\nHow to fully optimise a flanking PCR to detect large amplicons."
+    "text": "Skills I learned\n\nHow to apply to the National Genomic Test Directory for new test indication.\nHow to fully optimise a flanking PCR to detect large amplicons."
   },
   {
     "objectID": "projects.html#description-3",
@@ -137,7 +137,7 @@
     "href": "projects.html#skills-i-learned-3",
     "title": "Lab Tests",
     "section": "Skills I learned",
-    "text": "Skills I learned\n\nHow to automatically audit clinical services using R Markdown scripts\nHow to set data-driven analysis thresholds for ddPCR\nHow to use RMarkdown to generate validation plots and tables"
+    "text": "Skills I learned\n\nHow to set data-driven analysis thresholds for ddPCR\nHow to use RMarkdown to generate validation plots and tables\nHow to automatically audit clinical services using R Markdown scripts"
   },
   {
     "objectID": "projects.html#description-4",
@@ -179,6 +179,20 @@
     "href": "projects.html#skills-i-learned-5",
     "title": "Lab Tests",
     "section": "Skills I learned",
-    "text": "Skills I learned\n\nHow to write a validation document to the standards of ISO15189"
+    "text": "Skills I learned\n\nHow to write a validation document to the standards of ISO:15189"
+  },
+  {
+    "objectID": "education.html#employment",
+    "href": "education.html#employment",
+    "title": "Training and Experience",
+    "section": "Employment",
+    "text": "Employment\nDevelopment Scientist\nNorth West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist\nUniversity College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist\nNorth Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Scientist\nNorth Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist\nCambridge University Hospital Genetics Laboratory | Sept 2016-Sept 2019\nResearch Technician\nRoslin Institute, Edinburgh | Sept 2014-Sept 2015"
+  },
+  {
+    "objectID": "education.html#education",
+    "href": "education.html#education",
+    "title": "CV",
+    "section": "Education",
+    "text": "Education\n\nNHS Scientist Training Programme\nNational School of Healthcare Science | Sept 2016-Sept 2019\n\n\nMSc Clinical Science (Genomics)\nUniversity of Manchester | Sept 2016-June 2019\n\n\nBSc with Honours Biomedical Sciences\nUniversity of Edinburgh | Sept 2011 – June 2014"
   }
 ]

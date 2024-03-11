@@ -2,8 +2,19 @@
 title: "Hi there, I'm Joe."
 about:
   id: me
-  template: broadside
+  template: jolla
   image: img/mountain_joe.jpg
+  image-shape: rounded
+  links: 
+    - icon: github
+      text: My Github
+      href: https://github.com/joeshaw824
+    - icon: clipboard2-check-fill
+      text: My registration
+      href: https://www.hcpc-uk.org/check-the-register/professional-registration-detail/?query=CS20980&profession=CS&backtosearchurl=https://www.hcpc-uk.org/check-the-register/register-results/&backtosearchquery=shaw
+    - icon: book-fill
+      text: My ORCiD
+      href: https://orcid.org/0000-0002-5089-751X
 ---
 
 I am a clinical scientist in genetics, working in the UK’s National Health Service. 
@@ -12,12 +23,4 @@ I specialise in developing new genetic tests for rare diseases and cancer, and I
 
 This website is a place to collate the stuff I work on and am interested in.
 
-**Links**
-
--   Github: [joeshaw824](https://github.com/joeshaw824)
-
--   ORCiD: [0000-0002-5089-751X](https://orcid.org/0000-0002-5089-751X)
-
--   HCPC: [my clinical scientist registration](https://www.hcpc-uk.org/check-the-register/professional-registration-detail/?query=CS20980&profession=CS&backtosearchurl=https://www.hcpc-uk.org/check-the-register/register-results/&backtosearchquery=shaw)
-
--   Email: [joseph.shaw3\@nhs.net]()
+[joseph.shaw3@nhs.net]{.underline}
