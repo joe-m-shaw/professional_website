@@ -1,14 +1,6 @@
 ---
-title: "Training and Experience"
+title: "Experience and Training"
 ---
-## Training
-
-**NHS Scientist Training Programme** | National School of Healthcare Science | Sept 2016-Sept 2019
-
-**MSc Clinical Science (Genomics)** | University of Manchester | Sept 2016-June 2019
-
-**BSc with Honours Biomedical Sciences** | University of Edinburgh | Sept 2011 – June 2014
-
 ## Experience
 
 **Development Scientist** | North West Genomics Laboratory Hub | Sept 2023-present
@@ -22,3 +14,11 @@ title: "Training and Experience"
 **Genetic Technologist** | Cambridge University Hospital Genetics Laboratory | Sept 2016-Sept 2019
 
 **Research Technician** | Roslin Institute, Edinburgh | Sept 2014-Sept 2015
+
+## Training
+
+**NHS Scientist Training Programme** | National School of Healthcare Science | Sept 2016-Sept 2019
+
+**MSc Clinical Science (Genomics)** | University of Manchester | Sept 2016-June 2019
+
+**BSc with Honours Biomedical Sciences** | University of Edinburgh | Sept 2011 – June 2014
