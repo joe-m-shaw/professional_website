@@ -2,7 +2,7 @@
 title: "Lab Tests"
 ---
 
-These are the lab tests I have developed so far in my career, starting with the most recent.
+My job is to make new tests for genetic laboratories. These are the lab tests I have developed so far in my career, starting with the most recent.
 
 # Genomic Instability Testing for Ovarian Cancer
 

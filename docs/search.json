@@ -32,7 +32,7 @@
     "href": "education.html",
     "title": "Training and Experience",
     "section": "",
-    "text": "NHS Scientist Training Programme\nNational School of Healthcare Science | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics)\nUniversity of Manchester | Sept 2016-June 2019\nBSc with Honours Biomedical Sciences\nUniversity of Edinburgh | Sept 2011 – June 2014"
+    "text": "NHS Scientist Training Programme | National School of Healthcare Science | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics) | University of Manchester | Sept 2016-June 2019\nBSc with Honours Biomedical Sciences | University of Edinburgh | Sept 2011 – June 2014"
   },
   {
     "objectID": "fun_projects.html",
@@ -53,7 +53,7 @@
     "href": "projects.html",
     "title": "Lab Tests",
     "section": "",
-    "text": "These are the lab tests I have developed so far in my career, starting with the most recent."
+    "text": "My job is to make new tests for genetic laboratories. These are the lab tests I have developed so far in my career, starting with the most recent."
   },
   {
     "objectID": "projects.html#description",
@@ -194,5 +194,19 @@
     "title": "CV",
     "section": "Education",
     "text": "Education\n\nNHS Scientist Training Programme\nNational School of Healthcare Science | Sept 2016-Sept 2019\n\n\nMSc Clinical Science (Genomics)\nUniversity of Manchester | Sept 2016-June 2019\n\n\nBSc with Honours Biomedical Sciences\nUniversity of Edinburgh | Sept 2011 – June 2014"
+  },
+  {
+    "objectID": "education.html#training",
+    "href": "education.html#training",
+    "title": "Training and Experience",
+    "section": "",
+    "text": "NHS Scientist Training Programme | National School of Healthcare Science | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics) | University of Manchester | Sept 2016-June 2019\nBSc with Honours Biomedical Sciences | University of Edinburgh | Sept 2011 – June 2014"
+  },
+  {
+    "objectID": "education.html#experience",
+    "href": "education.html#experience",
+    "title": "Training and Experience",
+    "section": "Experience",
+    "text": "Experience\nDevelopment Scientist | North West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist | University College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist | North Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Clinical Scientist | North Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist | Cambridge University Hospital Genetics Laboratory | Sept 2016-Sept 2019\nResearch Technician | Roslin Institute, Edinburgh | Sept 2014-Sept 2015"
   }
 ]
