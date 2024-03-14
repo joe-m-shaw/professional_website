@@ -23,9 +23,9 @@ In this project I validated a new bioinformatics pipeline for detection of genom
 
 [**Skills I learned**]{.underline}
 
-- How to query an SQL database with R using an ODBC connection
-- How to parse information from PDFs
-- How to analyse sWGS data
+- How to analyse sWGS data 
+- How to query an SQL database with dbplyr using an ODBC connection
+- How to parse information from PDFs using regular expressions and raw strings
 
 # Spinocerebellar Ataxia type 36
 
@@ -44,7 +44,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 [**Skills I learned**]{.underline}
 
 - How to design repeat-primed PCR primers
-- How to use optimise repeat-primed PCRs 
+- How to optimise repeat-primed PCRs 
 - How to integrate a literature review into a validation document
 
 # *RFC1*-Disorder Testing
@@ -85,7 +85,7 @@ The aim of this project was to confirm mosaic sequence variants for rare skin di
 
 - How to set data-driven analysis thresholds for ddPCR
 - How to use RMarkdown to generate validation plots and tables
-- How to automatically audit clinical services using R Markdown scripts
+- How to automatically audit clinical services using RMarkdown scripts
 
 # Non-Invasive Prenatal Diagnosis for Sickle Cell Disease and Rare Genetic Conditions
 
@@ -106,7 +106,7 @@ In this project I developed a ddPCR test for sickle cell disease which could dia
 [**Skills I learned**]{.underline}
 
 - How to write an original research paper
-- How to write code in R
+- How to write code in R using tidyverse packages
 - How to optimise ddPCR assays
 
 # Myotonic Dystrophy Type 1
