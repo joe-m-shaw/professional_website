@@ -1,12 +1,13 @@
 ---
-title: "Lab Tests"
+title: "Genetic Tests"
 ---
+# Introduction
 
-I specialise in making new tests for clinical genetic laboratories. This page lists the lab tests I have developed so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
+I specialise in making new genetic tests for clinical laboratories. This page lists the tests I have developed so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
 
 # Genomic Instability Testing for Ovarian Cancer
 
-This was a project to validate a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company [SeqOne Genomics](https://seqone.com/). Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). Until this project, samples were shipped from Manchester to the USA for testing by Myriad Genetics.
+In this project I validated a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company [SeqOne Genomics](https://seqone.com/). Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). This workflow is now in diagnostic service, and the results are used to plan patient treatment.
 
 [**Project Overview**]{.underline}
 
@@ -22,13 +23,13 @@ This was a project to validate a new bioinformatics pipeline for detection of ge
 
 [**Skills I learned**]{.underline}
 
-- How to query an SQL database with R using an ODBC connection.
-- How to parse information from PDFs.
-- How to analyse sWGS data.
+- How to query an SQL database with R using an ODBC connection
+- How to parse information from PDFs
+- How to analyse sWGS data
 
 # Spinocerebellar Ataxia type 36
 
-Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102/)) is a very rare neurological disorder caused by a hexanucleotide repeat expansion in the *NOP56* gene, with fewer than 200 patients reported in the literature. To my knowledge, no diagnostic service existed in the world prior to this project. 
+Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102/)) is a very rare neurological disorder caused by a hexanucleotide repeat expansion in the *NOP56* gene, with fewer than 200 patients reported in the literature. I optimised a repeat-primed PCR protocol and validated it on a cohort of samples tested via whole genome sequencing with the [ExpansionHunter](https://pubmed.ncbi.nlm.nih.gov/31134279/) algorithm. This diagnostic service is, to my knowledge, the first in the world for this condition.
 
 [**Project Overview**]{.underline}
 
@@ -48,7 +49,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 # *RFC1*-Disorder Testing
 
-*RFC1*-disorder is a neurological disorder caused by repeat expansions in the *RFC1* gene, and was first [reported in 2019](https://pubmed.ncbi.nlm.nih.gov/30926972/) by Dr Andrea Cortese's research group at the UCLH Institute for Neurology. For this project we developed a diagnostic service for *RFC1* expansions by modifying the available research protocol, and we successfully added *RFC1* testing to the [NHS National Genomic Test Directory](https://www.england.nhs.uk/publication/national-genomic-test-directories/).
+*RFC1*-disorder is a neurological disorder caused by repeat expansions in the *RFC1* gene, and was first [reported in 2019](https://pubmed.ncbi.nlm.nih.gov/30926972/) by Dr Andrea Cortese's research group at the UCLH Institute for Neurology. For this project I developed a diagnostic service for *RFC1* expansions by modifying the available research protocol, and successfully added *RFC1* testing to the [NHS National Genomic Test Directory](https://www.england.nhs.uk/publication/national-genomic-test-directories/).
 
 [**Project Overview**]{.underline}
 
@@ -88,7 +89,7 @@ The aim of this project was to confirm mosaic sequence variants for rare skin di
 
 # Non-Invasive Prenatal Diagnosis for Sickle Cell Disease and Rare Genetic Conditions
 
-In this project I developed a ddPCR test for sickle cell disease which could diagnose the condition prenatally using only a maternal blood sample. The project was then expanded to developing bespoke ddPCR assays for rare genetic conditions with different inheritance patterns. Ultimately the accuracy of the ddPCR test versus invasive prenatal testing was not high enough to permit a clinical service, and we [published our findings](https://pubmed.ncbi.nlm.nih.gov/36760169/) in the journal Prenatal Diagnosis.
+In this project I developed a ddPCR test for sickle cell disease which could diagnose the condition prenatally using only a maternal blood sample. The project was then expanded to developing bespoke ddPCR assays for rare genetic conditions with different inheritance patterns. The correct prediction rate was optimised to 98% in comparison with invasive testing, but the presence of 2 incorrect results prevented the implementation of the method as a diagnostic service, and we [published our findings](https://pubmed.ncbi.nlm.nih.gov/36760169/) in the journal Prenatal Diagnosis.
 
 [**Project Overview**]{.underline}
 
@@ -104,11 +105,9 @@ In this project I developed a ddPCR test for sickle cell disease which could dia
 
 [**Skills I learned**]{.underline}
 
-- How to write code in R.
-- How to write an original research paper.
-- How to collate data and manipulate it in RStudio.
-- How to use version control with Git.
-- How to optimise ddPCR assays.
+- How to write an original research paper
+- How to write code in R
+- How to optimise ddPCR assays
 
 # Myotonic Dystrophy Type 1
 
