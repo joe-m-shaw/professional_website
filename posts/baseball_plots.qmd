@@ -1,0 +1,9 @@
+---
+title: "I became a baseball stats nerd"
+---
+
+I read the book “Moneyball” by Michael Lewis and got really interested in baseball statistics. If you haven’t read the book, or watched the movie adaptation with Brad Pitt and Jonah Hill, Moneyball is the story of the Oakland Athletics baseball team, who use statistical analysis to find players that are under-valued by the more traditional evaluations of baseball scouts. 
+
+I then had a chat with my friend Alvin, who is now the manager of the Richmond Dukes baseball team in London. He explained the rules of baseball to me, and I went along to see the Dukes play one Sunday afternoon. Alvin then mentioned he was writing a review article of the team’s performance that season, and needed some nice plots to illustrate how the team was improving. 
+
+So I got access to the team’s statistics and made some fun graphs in ggplot2, with the club’s colours for the colour scheme and their logo added in. It was really fun to do!

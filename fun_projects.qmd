@@ -1,11 +1,12 @@
 ---
 title: "Fun Projects"
+listing:
+  id: sample-listings
+  contents: posts
+  type: grid
 ---
 
-## Baseball graphs
+These are a collection of fun projects with R that I've done over the years.
 
-This was a cool project to plot the season statistics for the Richmond Dukes baseball team in London, who are managed by my friend Alvin. You can see the finished graphs [here](https://www.alvinmichael.com/baseball/richmond-dukes-2022-season-in-review) and also check out the code in the [Github repo](https://github.com/joeshaw824/richmond_dukes_baseball) if you're interested.
-
-
-
-
+::: {#sample-listings}
+:::
