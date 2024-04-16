@@ -1,5 +1,5 @@
-# Personal Website
+# Professional Website
 
-This is my first personal website, written using Quarto.
+This is my professional website, written using Quarto.
 
 *This repo was initially generated from a Quarto template available here: https://github.com/jtr13/website-template.*
