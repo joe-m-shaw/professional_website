@@ -5,6 +5,8 @@ title: "Genetic Tests"
 
 I specialise in making new genetic tests for clinical laboratories. This page lists the tests I have developed so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
 
+I have included links to the Github code repositories that I wrote for each project.
+
 # Genomic Instability Testing for Ovarian Cancer
 
 In this project I validated a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company [SeqOne Genomics](https://seqone.com/). Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). This workflow is now in diagnostic service, and the results are used to plan patient treatment.
@@ -41,6 +43,8 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** repeat-primed PCR and flanking PCR
 
+**Codebase:** [R](https://github.com/joeshaw824/repeat_confirmations_project)
+
 [**Skills I learned**]{.underline}
 
 - How to design repeat-primed PCR primers
@@ -61,6 +65,8 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** multiple repeat-primed PCRs and flanking PCR
 
+**Codebase:** [R](https://github.com/joeshaw824/repeat_confirmations_project)
+
 [**Skills I learned**]{.underline}
 
 - How to fully optimise a flanking PCR to detect large amplicons
@@ -80,6 +86,8 @@ The aim of this project was to confirm mosaic sequence variants for rare skin di
 **Location:** North London Genomic Laboratory Hub
 
 **Technique:** ddPCR
+
+**Codebase:** [R](https://github.com/joeshaw824/ddpcr_mosaicism)
 
 [**Skills I learned**]{.underline}
 
