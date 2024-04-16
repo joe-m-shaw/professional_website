@@ -20,5 +20,3 @@ about:
 I am a clinical scientist in genetics, working in the UK’s National Health Service. 
 
 I specialise in developing new genetic tests for rare diseases and cancer.
-
-This website is a place to collate the stuff I work on and am interested in.
