@@ -7,6 +7,28 @@ I specialise in making new genetic tests for clinical laboratories. This page li
 
 I have included links to the Github code repositories that I wrote for each project.
 
+# *ERBB2* gene amplifications in solid tumours
+
+This project was to detect amplifications of the *ERBB2* (*HER2*) gene in solid tumour samples, focussing on lung, colorectal and brain cancers. *ERBB2* is an important gene in many cancer types, and is targetted by several medications including trastuzumab (Herceptin).
+
+[**Project Overview**]{.underline}
+
+**Outcome:** diagnostic service
+
+**Timing:** Dec 2023-Apr 2024
+
+**Location:** Manchester Genomic Laboratory Hub
+
+**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+
+**Codebase:** [R](https://github.com/joeshaw824/pansolid_cnv_validation)
+
+[**Skills I learned**]{.underline}
+
+- How to create CNV plots with embedded gene, exon and primer locations
+- How to create a validation document in Quarto
+- How to perform limit of detection experiments with reference materials
+
 # Genomic Instability Testing for Ovarian Cancer
 
 In this project I validated a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company [SeqOne Genomics](https://seqone.com/). Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). This workflow is now in diagnostic service, and the results are used to plan patient treatment.
