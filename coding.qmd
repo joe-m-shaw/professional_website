@@ -1,0 +1,33 @@
+---
+title: "Coding"
+---
+
+```{r}
+#| label: plot
+#| echo: FALSE
+#| message: FALSE
+
+library(tidyverse)
+
+data <- data.frame(
+  x = seq(1:100)) |>
+  mutate(y = x^3)
+
+happy_plot <- ggplot(data, aes(x = x, y = y)) +
+  geom_line(linewidth = 1, colour = "blue") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+  axis.text = element_blank(),
+  axis.ticks = element_blank(),
+  axis.title = element_text(size = 18)) +
+  labs(x = "Time spent using ggplot2",
+  y = "Joe's happiness")
+
+happy_plot
+
+```
+
+I've been coding in R since 2019 and I love it! 
+
+As part of my continuing professional development I'm aiming to get better at coding and to learn new skills. I'm documenting my notes with Quarto (which this website is also built with) on [this public Github repo](https://github.com/joeshaw824/learning_r). 
+
