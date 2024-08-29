@@ -39,7 +39,14 @@
     "href": "contact.html",
     "title": "Contact",
     "section": "",
-    "text": "If you’d like to get in contact, my work email is joseph.shaw3@nhs.net."
+    "text": "If you’d like to get in contact, my work email is joseph.shaw3 at symbol nhs.net."
+  },
+  {
+    "objectID": "coding.html",
+    "href": "coding.html",
+    "title": "Coding",
+    "section": "",
+    "text": "I’ve been coding in R since 2019 and I love it!\nAs part of my continuing professional development I’m aiming to get better at coding and to learn new skills. I’m documenting my notes with Quarto (which this website is also built with) on this public Github repo."
   },
   {
     "objectID": "education.html",
