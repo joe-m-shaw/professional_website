@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Joe Shaw - Genetic Tests</title>
+<title>Genetic Tests – Joe Shaw</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -128,7 +128,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#erbb2-gene-amplifications-in-solid-tumours" id="toc-erbb2-gene-amplifications-in-solid-tumours" class="nav-link" data-scroll-target="#erbb2-gene-amplifications-in-solid-tumours"><em>ERBB2</em> gene amplifications in solid tumours</a></li>
+  <li><a href="#amplifications-of-9-oncogenes-in-diverse-cancers" id="toc-amplifications-of-9-oncogenes-in-diverse-cancers" class="nav-link" data-scroll-target="#amplifications-of-9-oncogenes-in-diverse-cancers">Amplifications of 9 Oncogenes in Diverse Cancers</a></li>
+  <li><a href="#erbb2-amplifications-in-solid-cancers" id="toc-erbb2-amplifications-in-solid-cancers" class="nav-link" data-scroll-target="#erbb2-amplifications-in-solid-cancers"><em>ERBB2</em> Amplifications in Solid Cancers</a></li>
   <li><a href="#genomic-instability-testing-for-ovarian-cancer" id="toc-genomic-instability-testing-for-ovarian-cancer" class="nav-link" data-scroll-target="#genomic-instability-testing-for-ovarian-cancer">Genomic Instability Testing for Ovarian Cancer</a></li>
   <li><a href="#spinocerebellar-ataxia-type-36" id="toc-spinocerebellar-ataxia-type-36" class="nav-link" data-scroll-target="#spinocerebellar-ataxia-type-36">Spinocerebellar Ataxia type 36</a></li>
   <li><a href="#rfc1-disorder-testing" id="toc-rfc1-disorder-testing" class="nav-link" data-scroll-target="#rfc1-disorder-testing"><em>RFC1</em>-Disorder Testing</a></li>
@@ -165,19 +166,35 @@ ul.task-list li input[type="checkbox"] {
 <p>I specialise in making new genetic tests for clinical laboratories. This page lists the tests I have developed so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.</p>
 <p>I have included links to the Github code repositories that I wrote for each project.</p>
 </section>
-<section id="erbb2-gene-amplifications-in-solid-tumours" class="level1">
-<h1><em>ERBB2</em> gene amplifications in solid tumours</h1>
-<p>This project was to detect amplifications of the <em>ERBB2</em> (<em>HER2</em>) gene in solid tumour samples, focussing on lung, colorectal and brain cancers. <em>ERBB2</em> is an important gene in many cancer types, and is targetted by several medications including trastuzumab (Herceptin).</p>
+<section id="amplifications-of-9-oncogenes-in-diverse-cancers" class="level1">
+<h1>Amplifications of 9 Oncogenes in Diverse Cancers</h1>
+<p>This project built on my previous validation of <em>ERBB2</em> amplifications, adding a further 8 genes: <em>ALK</em>, <em>BRAF</em>, <em>EGFR</em>, <em>MET</em>, <em>MDM2</em> <em>MYC</em>, <em>MYCN</em> and <em>SMO</em>. These genes are important for prognosis and treatment planning in many different cancer types.</p>
+<p><strong>Project Overview</strong></p>
+<p><strong>Outcome:</strong> diagnostic service</p>
+<p><strong>Timing:</strong> Apr 2024-Nov 2024</p>
+<p><strong>Location:</strong> Manchester Genomic Laboratory Hub</p>
+<p><strong>Technique:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/28049435/">QIAseq</a> next generation sequencing</p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/pansolid_cnv_validation">R</a></p>
+<p><strong>Skills I learned</strong></p>
+<ul>
+<li>How to build a shiny app for quality monitoring</li>
+<li>How to render full documentation and analysis with R and Quarto into a Word template</li>
+<li>How to manipulate whole genome sequencing HTML results using rvest</li>
+</ul>
+</section>
+<section id="erbb2-amplifications-in-solid-cancers" class="level1">
+<h1><em>ERBB2</em> Amplifications in Solid Cancers</h1>
+<p>This project was to detect amplifications of the <em>ERBB2</em> (<em>HER2</em>) gene in solid tumour samples, focusing on lung, colorectal and brain cancers. <em>ERBB2</em> is an important gene in many cancer types, and is targeted by several medications including trastuzumab (Herceptin).</p>
 <p><u><strong>Project Overview</strong></u></p>
 <p><strong>Outcome:</strong> diagnostic service</p>
 <p><strong>Timing:</strong> Dec 2023-Apr 2024</p>
 <p><strong>Location:</strong> Manchester Genomic Laboratory Hub</p>
 <p><strong>Technique:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/28049435/">QIAseq</a> next generation sequencing</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/pansolid_cnv_validation">R</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/pansolid_cnv_validation">R</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to create CNV plots with embedded gene, exon and primer locations</li>
-<li>How to create a validation document in Quarto</li>
+<li>How to combine R and Quarto for analysis</li>
 <li>How to perform limit of detection experiments with reference materials</li>
 </ul>
 </section>
@@ -189,12 +206,12 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Timing:</strong> Sept 2023-Dec 2023</p>
 <p><strong>Location:</strong> Manchester Genomic Laboratory Hub</p>
 <p><strong>Technique:</strong> shallow whole genome sequencing (sWGS)</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/homologous_recombination_deficiency">R</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/homologous_recombination_deficiency">R</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to analyse sWGS data</li>
 <li>How to query an SQL database with dbplyr using an ODBC connection</li>
-<li>How to parse information from PDFs using regular expressions and raw strings</li>
+<li>How to parse information from PDFs with pdftools using regular expressions and raw strings</li>
 </ul>
 </section>
 <section id="spinocerebellar-ataxia-type-36" class="level1">
@@ -205,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Timing:</strong> Nov 2022-July 2023</p>
 <p><strong>Location:</strong> University College London Hospital Neurogenetics Department</p>
 <p><strong>Technique:</strong> repeat-primed PCR and flanking PCR</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/repeat_confirmations_project">R</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/repeat_confirmations_project">R</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to design repeat-primed PCR primers</li>
@@ -221,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Timing:</strong> Jan 2022-July 2023</p>
 <p><strong>Location:</strong> University College London Hospital Neurogenetics Department</p>
 <p><strong>Technique:</strong> multiple repeat-primed PCRs and flanking PCR</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/repeat_confirmations_project">R</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/repeat_confirmations_project">R</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to fully optimise a flanking PCR to detect large amplicons</li>
@@ -237,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Timing:</strong> Oct 2021-March 2022</p>
 <p><strong>Location:</strong> North London Genomic Laboratory Hub</p>
 <p><strong>Technique:</strong> ddPCR</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/ddpcr_mosaicism">R</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/ddpcr_mosaicism">R</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to set data-driven analysis thresholds for ddPCR</li>
@@ -253,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Timing:</strong> September 2019-January 2022</p>
 <p><strong>Location:</strong> North London Genomic Laboratory Hub</p>
 <p><strong>Technique:</strong> droplet digital PCR</p>
-<p><strong>Codebase:</strong> <a href="https://github.com/joeshaw824/ddpcr_nipd">R and JAGS</a></p>
+<p><strong>Codebase:</strong> <a href="https://github.com/joe-m-shaw/ddpcr_nipd">R and JAGS</a></p>
 <p><u><strong>Skills I learned</strong></u></p>
 <ul>
 <li>How to write an original research paper</li>
@@ -315,18 +332,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -358,7 +364,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -366,7 +394,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

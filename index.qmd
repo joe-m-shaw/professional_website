@@ -3,12 +3,12 @@ title: "Hi, I'm Joe. I make tests."
 about:
   id: me
   template: jolla
-  image: img/mountain_joe.jpg
+  image: img/Joe_photo.jpg
   image-shape: rounded
   links: 
     - icon: github
       text: My Github
-      href: https://github.com/joeshaw824
+      href: https://github.com/joe-m-shaw
     - icon: clipboard2-check-fill
       text: My registration
       href: https://www.hcpc-uk.org/check-the-register/professional-registration-detail/?query=CS20980&profession=CS&backtosearchurl=https://www.hcpc-uk.org/check-the-register/register-results/&backtosearchquery=shaw

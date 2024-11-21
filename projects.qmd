@@ -7,9 +7,31 @@ I specialise in making new genetic tests for clinical laboratories. This page li
 
 I have included links to the Github code repositories that I wrote for each project.
 
-# *ERBB2* gene amplifications in solid tumours
+# Amplifications of 9 Oncogenes in Diverse Cancers
 
-This project was to detect amplifications of the *ERBB2* (*HER2*) gene in solid tumour samples, focussing on lung, colorectal and brain cancers. *ERBB2* is an important gene in many cancer types, and is targetted by several medications including trastuzumab (Herceptin).
+This project built on my previous validation of *ERBB2* amplifications, adding a further 8 genes: *ALK*, *BRAF*, *EGFR*, *MET*, *MDM2* *MYC*, *MYCN* and *SMO*. These genes are important for prognosis and treatment planning in many different cancer types. 
+
+**Project Overview**
+
+**Outcome:** diagnostic service
+
+**Timing:** Apr 2024-Nov 2024
+
+**Location:** Manchester Genomic Laboratory Hub
+
+**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+
+**Codebase:** [R](https://github.com/joe-m-shaw/pansolid_cnv_validation)
+
+**Skills I learned**
+
+- How to build a shiny app for quality monitoring
+- How to render full documentation and analysis with R and Quarto into a Word template
+- How to manipulate whole genome sequencing HTML results using rvest
+
+# *ERBB2* Amplifications in Solid Cancers
+
+This project was to detect amplifications of the *ERBB2* (*HER2*) gene in solid tumour samples, focusing on lung, colorectal and brain cancers. *ERBB2* is an important gene in many cancer types, and is targeted by several medications including trastuzumab (Herceptin).
 
 [**Project Overview**]{.underline}
 
@@ -21,12 +43,12 @@ This project was to detect amplifications of the *ERBB2* (*HER2*) gene in solid 
 
 **Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
 
-**Codebase:** [R](https://github.com/joeshaw824/pansolid_cnv_validation)
+**Codebase:** [R](https://github.com/joe-m-shaw/pansolid_cnv_validation)
 
 [**Skills I learned**]{.underline}
 
 - How to create CNV plots with embedded gene, exon and primer locations
-- How to create a validation document in Quarto
+- How to combine R and Quarto for analysis
 - How to perform limit of detection experiments with reference materials
 
 # Genomic Instability Testing for Ovarian Cancer
@@ -43,13 +65,13 @@ In this project I validated a new bioinformatics pipeline for detection of genom
 
 **Technique:** shallow whole genome sequencing (sWGS)
 
-**Codebase:** [R](https://github.com/joeshaw824/homologous_recombination_deficiency)
+**Codebase:** [R](https://github.com/joe-m-shaw/homologous_recombination_deficiency)
 
 [**Skills I learned**]{.underline}
 
 - How to analyse sWGS data 
 - How to query an SQL database with dbplyr using an ODBC connection
-- How to parse information from PDFs using regular expressions and raw strings
+- How to parse information from PDFs with pdftools using regular expressions and raw strings
 
 # Spinocerebellar Ataxia type 36
 
@@ -65,7 +87,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** repeat-primed PCR and flanking PCR
 
-**Codebase:** [R](https://github.com/joeshaw824/repeat_confirmations_project)
+**Codebase:** [R](https://github.com/joe-m-shaw/repeat_confirmations_project)
 
 [**Skills I learned**]{.underline}
 
@@ -87,7 +109,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** multiple repeat-primed PCRs and flanking PCR
 
-**Codebase:** [R](https://github.com/joeshaw824/repeat_confirmations_project)
+**Codebase:** [R](https://github.com/joe-m-shaw/repeat_confirmations_project)
 
 [**Skills I learned**]{.underline}
 
@@ -109,7 +131,7 @@ The aim of this project was to confirm mosaic sequence variants for rare skin di
 
 **Technique:** ddPCR
 
-**Codebase:** [R](https://github.com/joeshaw824/ddpcr_mosaicism)
+**Codebase:** [R](https://github.com/joe-m-shaw/ddpcr_mosaicism)
 
 [**Skills I learned**]{.underline}
 
@@ -131,7 +153,7 @@ In this project I developed a ddPCR test for sickle cell disease which could dia
 
 **Technique:** droplet digital PCR
 
-**Codebase:** [R and JAGS](https://github.com/joeshaw824/ddpcr_nipd)
+**Codebase:** [R and JAGS](https://github.com/joe-m-shaw/ddpcr_nipd)
 
 [**Skills I learned**]{.underline}
 
