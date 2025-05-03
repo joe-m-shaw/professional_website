@@ -7,6 +7,28 @@ I specialise in making new genetic tests for clinical laboratories. This page li
 
 I have included links to the Github code repositories that I wrote for each project.
 
+# Deletions, LOH and Ploidy Detection in Solid Cancers
+
+This project was the final section of a broader project to validate copy number variant detection for solid cancers at the North West GLH. It was the most technically complex validation I've done so far, involving over 150 samples, 47 different genes and 4 different laboratory methods, with investigation of gene deletions, loss of heterozygosity (LOH) and different chromosomal ploidy states. 
+
+**Project Overview**
+
+**Outcome:** diagnostic service
+
+**Timing:** Nov 2024-April 2025
+
+**Location:** Manchester Genomic Laboratory Hub
+
+**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+
+**Codebase:** [R and Quarto](https://github.com/joe-m-shaw/pansolid_cnv_validation)
+
+**Skills I learned**
+
+- How to create my first R package: [foldchanger](https://joe-m-shaw.github.io/foldchanger/)
+- How to perform automated code testing with testthat
+- How to perform validation comparisons across multiple techniques and data layouts, including whole genome sequencing, droplet digital PCR, short tandem repeat PCR and NGS
+
 # Amplifications of 9 Oncogenes in Diverse Cancers
 
 This project built on my previous validation of *ERBB2* amplifications, adding a further 8 genes: *ALK*, *BRAF*, *EGFR*, *MET*, *MDM2* *MYC*, *MYCN* and *SMO*. These genes are important for prognosis and treatment planning in many different cancer types. 

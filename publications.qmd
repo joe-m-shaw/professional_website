@@ -10,6 +10,8 @@ title: "Publications"
 
 ## Papers that I am a co-author on
 
+Hirons B, Cho PSP, Rhatigan K, [**Shaw J**]{.underline}, Curro R, Rugginini B, Dominik N, Turner RD, Mackay E, Hull JH, Abubakar-Waziri H, Kesavan H, Jolley CJ, Hadden RD, Cortese A, Birring SS. Repeat expansions in RFC1 gene in refractory chronic cough. ERJ Open Res. 2025 Jan 13;11(1):00584-2024. doi: 10.1183/23120541.00584-2024. PMID: [39811557](https://pubmed.ncbi.nlm.nih.gov/39811557/)
+
 Hanson B, [**Shaw J**]{.underline}, Povarnitsyn N, Bowns B, Young E, Gerrish A, Allen S, Scotchman E, Chitty LS, Chandler NJ. Expanding Access to Noninvasive Prenatal Diagnosis for Monogenic Conditions to Consanguineous Families. Clin Chem. 2024 Apr 9:hvae023. doi: 10.1093/clinchem/hvae023. Epub ahead of print. PMID: [38592422](https://pubmed.ncbi.nlm.nih.gov/38592422/).
 
 Dominik N, Magri S, Currò R, Abati E, Facchini S, Corbetta M, Macpherson H, Di Bella D, Sarto E, Stevanovski I, Chintalaphani SR, Akcimen F, Manini A, Vegezzi E, Quartesan I, Montgomery KA, Pirota V, Crespan E, Perini C, Grupelli GP, Tomaselli PJ, Marques W; Genomics England Research Consortium; [**Shaw J**]{.underline}, Polke J, Salsano E, Fenu S, Pareyson D, Pisciotta C, Tofaris GK, Nemeth AH, Ealing J, Radunovic A, Kearney S, Kumar KR, Vucic S, Kennerson M, Reilly MM, Houlden H, Deveson I, Tucci A, Taroni F, Cortese A. Normal and pathogenic variation of RFC1 repeat expansions: implications for clinical diagnosis. Brain. 2023 Dec 1;146(12):5060-5069. PMID: [37450567](https://pubmed.ncbi.nlm.nih.gov/37450567/).

@@ -7,14 +7,17 @@ about:
   image-shape: rounded
   links: 
     - icon: github
-      text: My Github
+      text: Github
       href: https://github.com/joe-m-shaw
     - icon: clipboard2-check-fill
-      text: My registration
+      text: Registration
       href: https://www.hcpc-uk.org/check-the-register/professional-registration-detail/?query=CS20980&profession=CS&backtosearchurl=https://www.hcpc-uk.org/check-the-register/register-results/&backtosearchquery=shaw
     - icon: book-fill
-      text: My ORCiD
+      text: ORCiD
       href: https://orcid.org/0000-0002-5089-751X
+    - icon: youtube
+      text: Youtube
+      href: https://youtu.be/TdfkSNIIGps?feature=shared
 ---
 
 I am a clinical scientist in genetics, working in the UK’s National Health Service. 
