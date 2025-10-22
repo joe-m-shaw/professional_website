@@ -3,7 +3,7 @@ title: "Genetic Tests"
 ---
 # Introduction
 
-I specialise in making new genetic tests for clinical laboratories. This page lists the tests I have developed so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
+I specialise in developing new genetic tests for clinical laboratories. This page lists the tests I have worked on so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
 
 I have included links to the Github code repositories that I wrote for each project.
 

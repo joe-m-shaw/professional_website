@@ -8,10 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - writing.qmd
       - projects.qmd
       - publications.qmd
       - education.qmd
-      - coding.qmd
       - contact.qmd
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"

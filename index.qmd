@@ -1,5 +1,5 @@
 ---
-title: "Hi, I'm Joe. I make tests."
+title: "Hi, I'm Joe."
 about:
   id: me
   template: jolla
