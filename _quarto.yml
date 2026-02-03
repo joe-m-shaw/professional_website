@@ -9,6 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - writing.qmd
+      - talks.qmd
       - projects.qmd
       - publications.qmd
       - education.qmd

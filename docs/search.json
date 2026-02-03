@@ -7,74 +7,32 @@
     "text": "Learning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Genetic Tests",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
     "section": "",
-    "text": "Introduction\nI specialise in developing new genetic tests for clinical laboratories. This page lists the tests I have worked on so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.\nI have included links to the Github code repositories that I wrote for each project.\n\n\nDeletions, LOH and Ploidy Detection in Solid Cancers\nThis project was the final section of a broader project to validate copy number variant detection for solid cancers at the North West GLH. It was the most technically complex validation I’ve done so far, involving over 150 samples, 47 different genes and 4 different laboratory methods, with investigation of gene deletions, loss of heterozygosity (LOH) and different chromosomal ploidy states.\nProject Overview\nOutcome: diagnostic service\nTiming: Nov 2024-April 2025\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCodebase: R and Quarto\nSkills I learned\n\nHow to create my first R package: foldchanger\nHow to perform automated code testing with testthat\nHow to perform validation comparisons across multiple techniques and data layouts, including whole genome sequencing, droplet digital PCR, short tandem repeat PCR and NGS\n\n\n\nAmplifications of 9 Oncogenes in Diverse Cancers\nThis project built on my previous validation of ERBB2 amplifications, adding a further 8 genes: ALK, BRAF, EGFR, MET, MDM2 MYC, MYCN and SMO. These genes are important for prognosis and treatment planning in many different cancer types.\nProject Overview\nOutcome: diagnostic service\nTiming: Apr 2024-Nov 2024\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCodebase: R\nSkills I learned\n\nHow to build a shiny app for quality monitoring\nHow to render full documentation and analysis with R and Quarto into a Word template\nHow to manipulate whole genome sequencing HTML results using rvest\n\n\n\nERBB2 Amplifications in Solid Cancers\nThis project was to detect amplifications of the ERBB2 (HER2) gene in solid tumour samples, focusing on lung, colorectal and brain cancers. ERBB2 is an important gene in many cancer types, and is targeted by several medications including trastuzumab (Herceptin).\nProject Overview\nOutcome: diagnostic service\nTiming: Dec 2023-Apr 2024\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCodebase: R\nSkills I learned\n\nHow to create CNV plots with embedded gene, exon and primer locations\nHow to combine R and Quarto for analysis\nHow to perform limit of detection experiments with reference materials\n\n\n\nGenomic Instability Testing for Ovarian Cancer\nIn this project I validated a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company SeqOne Genomics. Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). This workflow is now in diagnostic service, and the results are used to plan patient treatment.\nProject Overview\nOutcome: diagnostic service\nTiming: Sept 2023-Dec 2023\nLocation: Manchester Genomic Laboratory Hub\nTechnique: shallow whole genome sequencing (sWGS)\nCodebase: R\nSkills I learned\n\nHow to analyse sWGS data\nHow to query an SQL database with dbplyr using an ODBC connection\nHow to parse information from PDFs with pdftools using regular expressions and raw strings\n\n\n\nSpinocerebellar Ataxia type 36\nSpinocerebellar Ataxia type 36 (SCA36) is a very rare neurological disorder caused by a hexanucleotide repeat expansion in the NOP56 gene, with fewer than 200 patients reported in the literature. I optimised a repeat-primed PCR protocol and validated it on a cohort of samples tested via whole genome sequencing with the ExpansionHunter algorithm. This diagnostic service is, to my knowledge, the first in the world for this condition.\nProject Overview\nOutcome: diagnostic service\nTiming: Nov 2022-July 2023\nLocation: University College London Hospital Neurogenetics Department\nTechnique: repeat-primed PCR and flanking PCR\nCodebase: R\nSkills I learned\n\nHow to design repeat-primed PCR primers\nHow to optimise repeat-primed PCRs\nHow to integrate a literature review into a validation document\n\n\n\nRFC1-Disorder Testing\nRFC1-disorder is a neurological disorder caused by repeat expansions in the RFC1 gene, and was first reported in 2019 by Dr Andrea Cortese’s research group at the UCLH Institute for Neurology. For this project I developed a diagnostic service for RFC1 expansions by modifying the available research protocol, and successfully added RFC1 testing to the NHS National Genomic Test Directory.\nProject Overview\nOutcome: diagnostic service\nTiming: Jan 2022-July 2023\nLocation: University College London Hospital Neurogenetics Department\nTechnique: multiple repeat-primed PCRs and flanking PCR\nCodebase: R\nSkills I learned\n\nHow to fully optimise a flanking PCR to detect large amplicons\nHow to apply to the National Genomic Test Directory for new test indication\nHow to integrate multiple PCRs into a single workflow for increased efficiency and cost-effectiveness\n\n\n\nMosaicism Detection for Rare Skin Disorders\nThe aim of this project was to confirm mosaic sequence variants for rare skin disorders using droplet digital PCR (ddPCR). The main challenges were that the variants were sometimes present in 1% of the sample or lower, the DNA quantities from skin biopsies were limited, and many of the variants were only found in a single patient. The solution was to use R to collate all the ddPCR data for multiple assays and establish uniform thresholds for background normal variation. The technique was then brought into diagnostic service, and over 100 reports were issued in the first 6 months.\nProject Overview\nOutcome: diagnostic service\nTiming: Oct 2021-March 2022\nLocation: North London Genomic Laboratory Hub\nTechnique: ddPCR\nCodebase: R\nSkills I learned\n\nHow to set data-driven analysis thresholds for ddPCR\nHow to use RMarkdown to generate validation plots and tables\nHow to automatically audit clinical services using RMarkdown scripts\n\n\n\nNon-Invasive Prenatal Diagnosis for Sickle Cell Disease and Rare Genetic Conditions\nIn this project I developed a ddPCR test for sickle cell disease which could diagnose the condition prenatally using only a maternal blood sample. The project was then expanded to developing bespoke ddPCR assays for rare genetic conditions with different inheritance patterns. The correct prediction rate was optimised to 98% in comparison with invasive testing, but the presence of 2 incorrect results prevented the implementation of the method as a diagnostic service, and we published our findings in the journal Prenatal Diagnosis.\nProject Overview\nOutcome: publication\nTiming: September 2019-January 2022\nLocation: North London Genomic Laboratory Hub\nTechnique: droplet digital PCR\nCodebase: R and JAGS\nSkills I learned\n\nHow to write an original research paper\nHow to write code in R using tidyverse packages\nHow to optimise ddPCR assays\n\n\n\nMyotonic Dystrophy Type 1\nThis was my first validation project, which I began as a trainee clinical scientist. Myotonic dystrophy type 1 is caused by a triplet repeat expansion in the DMPK gene, and testing for this condition is a core requirement for genetics laboratories in England. I was asked to validate the test at the North London Genomic Laboratory Hub as part of my clinical scientist training. The validation successfully passed external evaluation by the United Kingdom Accreditation Service (UKAS) and went into diagnostic service.\nProject Overview\nOutcome: diagnostic service\nTiming: July 2018-Jan 2020\nLocation: North London Genomic Laboratory Hub\nTechnique: repeat-primed PCR\nSkills I learned\n\nHow to write a validation document to the standards of ISO:15189\nHow to calculate mobility shifts in capillary electrophoresis using GeneMarker\nHow to write standard operating procedures for wet lab work and analysis"
+    "text": "Shaw J, Scotchman E, Paternoster B, Ramos M, Nesbitt S, Sheppard S, Snowsill T, Chitty LS, Chandler N. Non-invasive fetal genotyping for maternal alleles with droplet digital PCR: A comparative study of analytical approaches. Prenat Diagn. 2023 Apr;43(4):477-488. PMID: 36760169.\nShaw J, Scotchman E, Chandler N, Chitty LS. Non-invasive prenatal testing for aneuploidy, copy-number variants and single-gene disorders. Reproduction. 2020 Nov;160(5):A1-A11. PMID: 32130205."
   },
   {
-    "objectID": "fun_projects.html",
-    "href": "fun_projects.html",
-    "title": "Fun Projects",
+    "objectID": "publications.html#papers-that-i-have-written",
+    "href": "publications.html#papers-that-i-have-written",
+    "title": "Publications",
     "section": "",
-    "text": "These are a collection of fun projects with R that I’ve done over the years.\n\n\n\n\n\n\n\n\nLearning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Shaw J, Scotchman E, Paternoster B, Ramos M, Nesbitt S, Sheppard S, Snowsill T, Chitty LS, Chandler N. Non-invasive fetal genotyping for maternal alleles with droplet digital PCR: A comparative study of analytical approaches. Prenat Diagn. 2023 Apr;43(4):477-488. PMID: 36760169.\nShaw J, Scotchman E, Chandler N, Chitty LS. Non-invasive prenatal testing for aneuploidy, copy-number variants and single-gene disorders. Reproduction. 2020 Nov;160(5):A1-A11. PMID: 32130205."
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "If you’d like to get in contact, my work email is joseph.shaw3 at symbol nhs.net."
-  },
-  {
-    "objectID": "baseball_plots.html",
-    "href": "baseball_plots.html",
-    "title": "I became a baseball stats nerd",
-    "section": "",
-    "text": "I read the book “Moneyball” by Michael Lewis and got really interested in baseball statistics. If you haven’t read the book, or watched the movie adaptation with Brad Pitt and Jonah Hill, Moneyball is the story of the Oakland Athletics baseball team, who use statistical analysis to find players that are under-valued by the more traditional evaluations of baseball scouts.\nI then had a chat with my friend Alvin, who is now the manager of the Richmond Dukes baseball team in London. He explained the rules of baseball to me, and I went along to see the Dukes play one Sunday afternoon. Alvin then mentioned he was writing a review article of the team’s performance that season, and needed some nice plots to illustrate how the team was improving.\nSo I got access to the team’s statistics and made some fun graphs in ggplot2, with the club’s colours for the colour scheme and their logo added in. It was really fun to do!"
-  },
-  {
-    "objectID": "coding.html",
-    "href": "coding.html",
-    "title": "Coding",
-    "section": "",
-    "text": "I’ve been coding in R since 2019 and I love it!\nAs part of my continuing professional development I’m aiming to get better at coding and to learn new skills. I’m documenting my notes with Quarto (which this website is also built with) on this public Github repo."
-  },
-  {
-    "objectID": "education.html",
-    "href": "education.html",
-    "title": "Experience and Training",
-    "section": "",
-    "text": "Development Scientist | North West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist | University College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist | North Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Clinical Scientist | North Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist | Cambridge University Hospital Genetics Laboratory | Sept 2015-Sept 2016\nResearch Technician | Roslin Institute, Edinburgh | Sept 2014-Sept 2015"
-  },
-  {
-    "objectID": "education.html#experience",
-    "href": "education.html#experience",
-    "title": "Experience and Training",
-    "section": "",
-    "text": "Development Scientist | North West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist | University College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist | North Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Clinical Scientist | North Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist | Cambridge University Hospital Genetics Laboratory | Sept 2015-Sept 2016\nResearch Technician | Roslin Institute, Edinburgh | Sept 2014-Sept 2015"
-  },
-  {
-    "objectID": "education.html#training",
-    "href": "education.html#training",
-    "title": "Experience and Training",
-    "section": "Training",
-    "text": "Training\nNHS Scientist Training Programme | Great Ormond Street Hospital for Children | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics) | University of Manchester | Sept 2016-June 2019\nBSc Biomedical Sciences | University of Edinburgh | Sept 2011 – June 2014"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hi, I’m Joe.",
-    "section": "",
-    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer."
+    "objectID": "publications.html#papers-that-i-am-a-co-author-on",
+    "href": "publications.html#papers-that-i-am-a-co-author-on",
+    "title": "Publications",
+    "section": "Papers that I am a co-author on",
+    "text": "Papers that I am a co-author on\nHirons B, Cho PSP, Rhatigan K, Shaw J, Curro R, Rugginini B, Dominik N, Turner RD, Mackay E, Hull JH, Abubakar-Waziri H, Kesavan H, Jolley CJ, Hadden RD, Cortese A, Birring SS. Repeat expansions in RFC1 gene in refractory chronic cough. ERJ Open Res. 2025 Jan 13;11(1):00584-2024. doi: 10.1183/23120541.00584-2024. PMID: 39811557\nHanson B, Shaw J, Povarnitsyn N, Bowns B, Young E, Gerrish A, Allen S, Scotchman E, Chitty LS, Chandler NJ. Expanding Access to Noninvasive Prenatal Diagnosis for Monogenic Conditions to Consanguineous Families. Clin Chem. 2024 Apr 9:hvae023. doi: 10.1093/clinchem/hvae023. Epub ahead of print. PMID: 38592422.\nDominik N, Magri S, Currò R, Abati E, Facchini S, Corbetta M, Macpherson H, Di Bella D, Sarto E, Stevanovski I, Chintalaphani SR, Akcimen F, Manini A, Vegezzi E, Quartesan I, Montgomery KA, Pirota V, Crespan E, Perini C, Grupelli GP, Tomaselli PJ, Marques W; Genomics England Research Consortium; Shaw J, Polke J, Salsano E, Fenu S, Pareyson D, Pisciotta C, Tofaris GK, Nemeth AH, Ealing J, Radunovic A, Kearney S, Kumar KR, Vucic S, Kennerson M, Reilly MM, Houlden H, Deveson I, Tucci A, Taroni F, Cortese A. Normal and pathogenic variation of RFC1 repeat expansions: implications for clinical diagnosis. Brain. 2023 Dec 1;146(12):5060-5069. PMID: 37450567.\nRonco R, Perini C, Currò R, Dominik N, Facchini S, Gennari A, Simone R, Stuart S, Nagy S, Vegezzi E, Quartesan I, El-Saddig A, Lavin T, Tucci A, Szymura A, Novis De Farias LE, Gary A, Delfeld M, Kandikatla P, Niu N, Tawde S, Shaw J, Polke J, Reilly MM, Wood NW, Crespan E, Gomez C, Chen JYH, Schmahmann JD, Gosal D, Houlden H, Das S, Cortese A. Truncating Variants in RFC1 in Cerebellar Ataxia, Neuropathy, and Vestibular Areflexia Syndrome. Neurology. 2023 Jan 31;100(5):e543-e554. PMID: 36289003.\nScotchman E, Shaw J, Paternoster B, Chandler N, Chitty LS. Non-invasive prenatal diagnosis and screening for monogenic disorders. Eur J Obstet Gynecol Reprod Biol. 2020 Oct;253:320-327. PMID: 32907778."
   },
   {
     "objectID": "posts/how_to_learn_to_code.html",
     "href": "posts/how_to_learn_to_code.html",
     "title": "Learning to Code",
     "section": "",
-    "text": "Several people recently have asked me for some tips on how to learn to code, so I have put my thoughts here with some links in case they are helpful."
+    "text": "2025-10-22\nSeveral people recently have asked me for some tips on how to learn to code, so I have put my thoughts here with some links in case they are helpful."
   },
   {
     "objectID": "posts/how_to_learn_to_code.html#coding-is-for-you",
@@ -154,24 +112,73 @@
     "text": "General programming and data science\n“The Turing Way” website made by The Turing Way Community This is a brilliant crowd-sourced repository of knowledge for coding and data science.\n“The Pragmatic Programmer: 2nd edition” by Andrew Hunt and David Thomas\nThis is a lovely textbook that I have a hardback copy of. It doesn’t focus on a specific language and instead is more of a practical and philosophical discussion on how to write good code."
   },
   {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi, I’m Joe.",
     "section": "",
-    "text": "Shaw J, Scotchman E, Paternoster B, Ramos M, Nesbitt S, Sheppard S, Snowsill T, Chitty LS, Chandler N. Non-invasive fetal genotyping for maternal alleles with droplet digital PCR: A comparative study of analytical approaches. Prenat Diagn. 2023 Apr;43(4):477-488. PMID: 36760169.\nShaw J, Scotchman E, Chandler N, Chitty LS. Non-invasive prenatal testing for aneuploidy, copy-number variants and single-gene disorders. Reproduction. 2020 Nov;160(5):A1-A11. PMID: 32130205."
+    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer."
   },
   {
-    "objectID": "publications.html#papers-that-i-have-written",
-    "href": "publications.html#papers-that-i-have-written",
-    "title": "Publications",
+    "objectID": "education.html",
+    "href": "education.html",
+    "title": "Experience and Training",
     "section": "",
-    "text": "Shaw J, Scotchman E, Paternoster B, Ramos M, Nesbitt S, Sheppard S, Snowsill T, Chitty LS, Chandler N. Non-invasive fetal genotyping for maternal alleles with droplet digital PCR: A comparative study of analytical approaches. Prenat Diagn. 2023 Apr;43(4):477-488. PMID: 36760169.\nShaw J, Scotchman E, Chandler N, Chitty LS. Non-invasive prenatal testing for aneuploidy, copy-number variants and single-gene disorders. Reproduction. 2020 Nov;160(5):A1-A11. PMID: 32130205."
+    "text": "Development Scientist | North West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist | University College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist | North Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Clinical Scientist | North Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist | Cambridge University Hospital Genetics Laboratory | Sept 2015-Sept 2016\nResearch Technician | Roslin Institute, Edinburgh | Sept 2014-Sept 2015"
   },
   {
-    "objectID": "publications.html#papers-that-i-am-a-co-author-on",
-    "href": "publications.html#papers-that-i-am-a-co-author-on",
-    "title": "Publications",
-    "section": "Papers that I am a co-author on",
-    "text": "Papers that I am a co-author on\nHirons B, Cho PSP, Rhatigan K, Shaw J, Curro R, Rugginini B, Dominik N, Turner RD, Mackay E, Hull JH, Abubakar-Waziri H, Kesavan H, Jolley CJ, Hadden RD, Cortese A, Birring SS. Repeat expansions in RFC1 gene in refractory chronic cough. ERJ Open Res. 2025 Jan 13;11(1):00584-2024. doi: 10.1183/23120541.00584-2024. PMID: 39811557\nHanson B, Shaw J, Povarnitsyn N, Bowns B, Young E, Gerrish A, Allen S, Scotchman E, Chitty LS, Chandler NJ. Expanding Access to Noninvasive Prenatal Diagnosis for Monogenic Conditions to Consanguineous Families. Clin Chem. 2024 Apr 9:hvae023. doi: 10.1093/clinchem/hvae023. Epub ahead of print. PMID: 38592422.\nDominik N, Magri S, Currò R, Abati E, Facchini S, Corbetta M, Macpherson H, Di Bella D, Sarto E, Stevanovski I, Chintalaphani SR, Akcimen F, Manini A, Vegezzi E, Quartesan I, Montgomery KA, Pirota V, Crespan E, Perini C, Grupelli GP, Tomaselli PJ, Marques W; Genomics England Research Consortium; Shaw J, Polke J, Salsano E, Fenu S, Pareyson D, Pisciotta C, Tofaris GK, Nemeth AH, Ealing J, Radunovic A, Kearney S, Kumar KR, Vucic S, Kennerson M, Reilly MM, Houlden H, Deveson I, Tucci A, Taroni F, Cortese A. Normal and pathogenic variation of RFC1 repeat expansions: implications for clinical diagnosis. Brain. 2023 Dec 1;146(12):5060-5069. PMID: 37450567.\nRonco R, Perini C, Currò R, Dominik N, Facchini S, Gennari A, Simone R, Stuart S, Nagy S, Vegezzi E, Quartesan I, El-Saddig A, Lavin T, Tucci A, Szymura A, Novis De Farias LE, Gary A, Delfeld M, Kandikatla P, Niu N, Tawde S, Shaw J, Polke J, Reilly MM, Wood NW, Crespan E, Gomez C, Chen JYH, Schmahmann JD, Gosal D, Houlden H, Das S, Cortese A. Truncating Variants in RFC1 in Cerebellar Ataxia, Neuropathy, and Vestibular Areflexia Syndrome. Neurology. 2023 Jan 31;100(5):e543-e554. PMID: 36289003.\nScotchman E, Shaw J, Paternoster B, Chandler N, Chitty LS. Non-invasive prenatal diagnosis and screening for monogenic disorders. Eur J Obstet Gynecol Reprod Biol. 2020 Oct;253:320-327. PMID: 32907778."
+    "objectID": "education.html#experience",
+    "href": "education.html#experience",
+    "title": "Experience and Training",
+    "section": "",
+    "text": "Development Scientist | North West Genomics Laboratory Hub | Sept 2023-present\nTranslational Scientist | University College London Hospital Neurogenetics Department | Jan 2022-July 2023\nTranslational Scientist | North Thames Genomic Laboratory Hub | Sept 2019-Jan 2022\nTrainee Clinical Scientist | North Thames Genomic Laboratory Hub | Sept 2016-Sept 2019\nGenetic Technologist | Cambridge University Hospital Genetics Laboratory | Sept 2015-Sept 2016\nResearch Technician | Roslin Institute, Edinburgh | Sept 2014-Sept 2015"
+  },
+  {
+    "objectID": "education.html#training",
+    "href": "education.html#training",
+    "title": "Experience and Training",
+    "section": "Training",
+    "text": "Training\nNHS Scientist Training Programme | Great Ormond Street Hospital for Children | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics) | University of Manchester | Sept 2016-June 2019\nBSc Biomedical Sciences | University of Edinburgh | Sept 2011 – June 2014"
+  },
+  {
+    "objectID": "coding.html",
+    "href": "coding.html",
+    "title": "Coding",
+    "section": "",
+    "text": "I’ve been coding in R since 2019 and I love it!\nAs part of my continuing professional development I’m aiming to get better at coding and to learn new skills. I’m documenting my notes with Quarto (which this website is also built with) on this public Github repo."
+  },
+  {
+    "objectID": "baseball_plots.html",
+    "href": "baseball_plots.html",
+    "title": "I became a baseball stats nerd",
+    "section": "",
+    "text": "I read the book “Moneyball” by Michael Lewis and got really interested in baseball statistics. If you haven’t read the book, or watched the movie adaptation with Brad Pitt and Jonah Hill, Moneyball is the story of the Oakland Athletics baseball team, who use statistical analysis to find players that are under-valued by the more traditional evaluations of baseball scouts.\nI then had a chat with my friend Alvin, who is now the manager of the Richmond Dukes baseball team in London. He explained the rules of baseball to me, and I went along to see the Dukes play one Sunday afternoon. Alvin then mentioned he was writing a review article of the team’s performance that season, and needed some nice plots to illustrate how the team was improving.\nSo I got access to the team’s statistics and made some fun graphs in ggplot2, with the club’s colours for the colour scheme and their logo added in. It was really fun to do!"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "If you’d like to get in contact, my work email is joseph.shaw3 at symbol nhs.net."
+  },
+  {
+    "objectID": "fun_projects.html",
+    "href": "fun_projects.html",
+    "title": "Fun Projects",
+    "section": "",
+    "text": "These are a collection of fun projects with R that I’ve done over the years.\n\n\n\n\n\n\n\n\nLearning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Genetic Tests",
+    "section": "",
+    "text": "Introduction\nI specialise in developing new genetic tests for clinical laboratories. This page lists the tests I have worked on so far in my career, starting with the most recent.\nDeveloping and delivering genetic tests is a joint effort between clinical scientists, bioinformaticians, technologists, technicians, data-scientists, clinicians and administrative staff. All of the projects listed below were collaborations with many wonderful colleagues without whom these projects would not have succeeded.\n\n\nChromosome-arm-level Copy Number Variant Detection in Solid Cancers\nIn this project we validated detection of copy number variants which impact entire chromosome arms, which are increasingly used in the diagnosis and stratification of brain tumours. This included the recurrent 1p19q co-deletion and simultaneous gain of chromosome 7 with loss of chromosome 10 (+7/-10).\nProject Overview\nOutcome: diagnostic service\nTiming: May 2025-Jan 2026\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCode: R and Quarto\nSkills I learned\n\nHow to create interactive plots in R and python using the plotly package\nHow to combine multiplex ligation-dependent probe amplification (MLPA) data and next generation sequencing (NGS) data in R\n\n\n\nDeletions, LOH and Ploidy Detection in Solid Cancers\nThis project was the third section of a broader project to validate copy number variant detection for solid cancers at the North West GLH. It was the most technically complex validation I’ve done so far, involving over 150 samples, 47 different genes and 4 different laboratory methods, with investigation of gene deletions, loss of heterozygosity (LOH) and different chromosomal ploidy states.\nProject Overview\nOutcome: diagnostic service\nTiming: Nov 2024-April 2025\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCode: R and Quarto\nSkills I learned\n\nHow to create my first R package: foldchanger\nHow to perform automated code testing with testthat\nHow to perform validation comparisons across multiple techniques and data layouts, including whole genome sequencing, droplet digital PCR, short tandem repeat PCR and NGS\n\n\n\nAmplifications of 9 Oncogenes in Diverse Cancers\nThis project built on my previous validation of ERBB2 amplifications, adding a further 8 genes: ALK, BRAF, EGFR, MET, MDM2 MYC, MYCN and SMO. These genes are important for prognosis and treatment planning in many different cancer types.\nProject Overview\nOutcome: diagnostic service\nTiming: Apr 2024-Nov 2024\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCode: R\nSkills I learned\n\nHow to build a shiny app for quality monitoring\nHow to render full documentation and analysis with R and Quarto into a Word template\nHow to manipulate whole genome sequencing HTML results using rvest\n\n\n\nERBB2 Amplifications in Solid Cancers\nThis project was to detect amplifications of the ERBB2 (HER2) gene in solid tumour samples, focusing on lung, colorectal and brain cancers. ERBB2 is an important gene in many cancer types, and is targeted by several medications including trastuzumab (Herceptin).\nProject Overview\nOutcome: diagnostic service\nTiming: Dec 2023-Apr 2024\nLocation: Manchester Genomic Laboratory Hub\nTechnique: QIAseq next generation sequencing\nCode: R\nSkills I learned\n\nHow to create CNV plots with embedded gene, exon and primer locations\nHow to combine R and Quarto for analysis\nHow to perform limit of detection experiments with reference materials\n\n\n\nGenomic Instability Testing for Ovarian Cancer\nIn this project I validated a new bioinformatics pipeline for detection of genomic instability in ovarian cancer, which was developed by the company SeqOne Genomics. Accurate detection of genomic instability is necessary for identifying optimum-responders to the anti-cancer drug olaparib (Lynparza®). This workflow is now in diagnostic service, and the results are used to plan patient treatment.\nProject Overview\nOutcome: diagnostic service\nTiming: Sept 2023-Dec 2023\nLocation: Manchester Genomic Laboratory Hub\nTechnique: shallow whole genome sequencing (sWGS)\nCode: R\nSkills I learned\n\nHow to analyse sWGS data\nHow to query an SQL database with dbplyr using an ODBC connection\nHow to parse information from PDFs with pdftools using regular expressions and raw strings\n\n\n\nSpinocerebellar Ataxia type 36\nSpinocerebellar Ataxia type 36 (SCA36) is a very rare neurological disorder caused by a hexanucleotide repeat expansion in the NOP56 gene, with fewer than 200 patients reported in the literature. I optimised a repeat-primed PCR protocol and validated it on a cohort of samples tested via whole genome sequencing with the ExpansionHunter algorithm. This diagnostic service is, to my knowledge, the first in the world for this condition.\nProject Overview\nOutcome: diagnostic service\nTiming: Nov 2022-July 2023\nLocation: University College London Hospital Neurogenetics Department\nTechnique: repeat-primed PCR and flanking PCR\nCode: R\nSkills I learned\n\nHow to design repeat-primed PCR primers\nHow to optimise repeat-primed PCRs\nHow to integrate a literature review into a validation document\n\n\n\nRFC1-Disorder Testing\nRFC1-disorder is a neurological disorder caused by repeat expansions in the RFC1 gene, and was first reported in 2019 by Dr Andrea Cortese’s research group at the UCLH Institute for Neurology. For this project I developed a diagnostic service for RFC1 expansions by modifying the available research protocol, and successfully added RFC1 testing to the NHS National Genomic Test Directory.\nProject Overview\nOutcome: diagnostic service\nTiming: Jan 2022-July 2023\nLocation: University College London Hospital Neurogenetics Department\nTechnique: multiple repeat-primed PCRs and flanking PCR\nCode: R\nSkills I learned\n\nHow to fully optimise a flanking PCR to detect large amplicons\nHow to apply to the National Genomic Test Directory for new test indication\nHow to integrate multiple PCRs into a single workflow for increased efficiency and cost-effectiveness\n\n\n\nMosaicism Detection for Rare Skin Disorders\nThe aim of this project was to confirm mosaic sequence variants for rare skin disorders using droplet digital PCR (ddPCR). The main challenges were that the variants were sometimes present in 1% of the sample or lower, the DNA quantities from skin biopsies were limited, and many of the variants were only found in a single patient. The solution was to use R to collate all the ddPCR data for multiple assays and establish uniform thresholds for background normal variation. The technique was then brought into diagnostic service, and over 100 reports were issued in the first 6 months.\nProject Overview\nOutcome: diagnostic service\nTiming: Oct 2021-March 2022\nLocation: North London Genomic Laboratory Hub\nTechnique: ddPCR\nCode: R\nSkills I learned\n\nHow to set data-driven analysis thresholds for ddPCR\nHow to use RMarkdown to generate validation plots and tables\nHow to automatically audit clinical services using RMarkdown scripts\n\n\n\nNon-Invasive Prenatal Diagnosis for Sickle Cell Disease and Rare Genetic Conditions\nIn this project I developed a ddPCR test for sickle cell disease which could diagnose the condition prenatally using only a maternal blood sample. The project was then expanded to developing bespoke ddPCR assays for rare genetic conditions with different inheritance patterns. The correct prediction rate was optimised to 98% in comparison with invasive testing, but the presence of 2 incorrect results prevented the implementation of the method as a diagnostic service, and we published our findings in the journal Prenatal Diagnosis.\nProject Overview\nOutcome: publication\nTiming: September 2019-January 2022\nLocation: North London Genomic Laboratory Hub\nTechnique: droplet digital PCR\nCode: R and JAGS\nSkills I learned\n\nHow to write an original research paper\nHow to write code in R using tidyverse packages\nHow to optimise ddPCR assays\n\n\n\nMyotonic Dystrophy Type 1\nThis was my first validation project, which I began as a trainee clinical scientist. Myotonic dystrophy type 1 is caused by a triplet repeat expansion in the DMPK gene, and testing for this condition is a core requirement for genetics laboratories in England. I was asked to validate the test at the North London Genomic Laboratory Hub as part of my clinical scientist training. The validation successfully passed external evaluation by the United Kingdom Accreditation Service (UKAS) and went into diagnostic service.\nProject Overview\nOutcome: diagnostic service\nTiming: July 2018-Jan 2020\nLocation: North London Genomic Laboratory Hub\nTechnique: repeat-primed PCR\nSkills I learned\n\nHow to write a validation document to the standards of ISO:15189\nHow to calculate mobility shifts in capillary electrophoresis using GeneMarker\nHow to write standard operating procedures for wet lab work and analysis"
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Recorded talks",
+    "section": "",
+    "text": "Why R is a clinical scientist’s best friend"
   }
 ]

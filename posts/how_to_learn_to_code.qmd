@@ -6,6 +6,8 @@ format:
     code-summary: "Click here to see the code"
 ---
 
+2025-10-22
+
 Several people recently have asked me for some tips on how to learn to code, so I have put my thoughts here with some links in case they are helpful.
 
 # A small caveat before we begin

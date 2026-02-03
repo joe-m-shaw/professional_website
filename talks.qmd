@@ -1,0 +1,8 @@
+---
+title: "Recorded talks"
+---
+
+# Why R is a clinical scientist's best friend
+
+{{< video https://www.youtube.com/watch?v=TdfkSNIIGps >}}
+

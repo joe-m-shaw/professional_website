@@ -3,15 +3,39 @@ title: "Genetic Tests"
 ---
 # Introduction
 
-I specialise in developing new genetic tests for clinical laboratories. This page lists the tests I have worked on so far in my career, starting with the most recent. All of these projects were collaborations with many wonderful colleagues who I am greatly indebted to.
+I specialise in developing new genetic tests for clinical laboratories. 
+This page lists the tests I have worked on so far in my career, starting with the most recent.
 
-I have included links to the Github code repositories that I wrote for each project.
+Developing and delivering genetic tests is a joint effort between clinical scientists, bioinformaticians, technologists, technicians, data-scientists, clinicians and administrative staff.
+All of the projects listed below were collaborations with many wonderful colleagues without whom these projects would not have succeeded.
+
+# Chromosome-arm-level Copy Number Variant Detection in Solid Cancers
+
+In this project we validated detection of copy number variants which impact entire chromosome arms, which are increasingly used in the diagnosis and stratification of brain tumours. 
+This included the recurrent 1p19q co-deletion and simultaneous gain of chromosome 7 with loss of chromosome 10 (+7/-10). 
+
+[**Project Overview**]{.underline}
+
+**Outcome:** diagnostic service
+
+**Timing:** May 2025-Jan 2026
+
+**Location:** Manchester Genomic Laboratory Hub
+
+**Technique:** QIAseq next generation sequencing
+
+**Code:** R and Quarto
+
+[**Skills I learned**]{.underline}
+
+- How to create interactive plots in R and python using the [plotly](https://plotly.com/r/) package
+- How to combine multiplex ligation-dependent probe amplification (MLPA) data and next generation sequencing (NGS) data in R
 
 # Deletions, LOH and Ploidy Detection in Solid Cancers
 
-This project was the final section of a broader project to validate copy number variant detection for solid cancers at the North West GLH. It was the most technically complex validation I've done so far, involving over 150 samples, 47 different genes and 4 different laboratory methods, with investigation of gene deletions, loss of heterozygosity (LOH) and different chromosomal ploidy states. 
+This project was the third section of a broader project to validate copy number variant detection for solid cancers at the North West GLH. It was the most technically complex validation I've done so far, involving over 150 samples, 47 different genes and 4 different laboratory methods, with investigation of gene deletions, loss of heterozygosity (LOH) and different chromosomal ploidy states. 
 
-**Project Overview**
+[**Project Overview**]{.underline}
 
 **Outcome:** diagnostic service
 
@@ -19,21 +43,21 @@ This project was the final section of a broader project to validate copy number 
 
 **Location:** Manchester Genomic Laboratory Hub
 
-**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+**Technique:** QIAseq next generation sequencing
 
-**Codebase:** [R and Quarto](https://github.com/joe-m-shaw/pansolid_cnv_validation)
+**Code:** R and Quarto
 
-**Skills I learned**
+[**Skills I learned**]{.underline}
 
 - How to create my first R package: [foldchanger](https://joe-m-shaw.github.io/foldchanger/)
-- How to perform automated code testing with testthat
+- How to perform automated code testing with [testthat](https://testthat.r-lib.org/)
 - How to perform validation comparisons across multiple techniques and data layouts, including whole genome sequencing, droplet digital PCR, short tandem repeat PCR and NGS
 
 # Amplifications of 9 Oncogenes in Diverse Cancers
 
 This project built on my previous validation of *ERBB2* amplifications, adding a further 8 genes: *ALK*, *BRAF*, *EGFR*, *MET*, *MDM2* *MYC*, *MYCN* and *SMO*. These genes are important for prognosis and treatment planning in many different cancer types. 
 
-**Project Overview**
+[**Project Overview**]{.underline}
 
 **Outcome:** diagnostic service
 
@@ -41,15 +65,15 @@ This project built on my previous validation of *ERBB2* amplifications, adding a
 
 **Location:** Manchester Genomic Laboratory Hub
 
-**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+**Technique:** QIAseq next generation sequencing
 
-**Codebase:** [R](https://github.com/joe-m-shaw/pansolid_cnv_validation)
+**Code:** R
 
-**Skills I learned**
+[**Skills I learned**]{.underline}
 
-- How to build a shiny app for quality monitoring
+- How to build a [shiny](https://shiny.posit.co/) app for quality monitoring
 - How to render full documentation and analysis with R and Quarto into a Word template
-- How to manipulate whole genome sequencing HTML results using rvest
+- How to manipulate whole genome sequencing HTML results using [rvest](https://rvest.tidyverse.org/)
 
 # *ERBB2* Amplifications in Solid Cancers
 
@@ -63,9 +87,9 @@ This project was to detect amplifications of the *ERBB2* (*HER2*) gene in solid 
 
 **Location:** Manchester Genomic Laboratory Hub
 
-**Technique:** [QIAseq](https://pubmed.ncbi.nlm.nih.gov/28049435/) next generation sequencing
+**Technique:** QIAseq next generation sequencing
 
-**Codebase:** [R](https://github.com/joe-m-shaw/pansolid_cnv_validation)
+**Code:** R
 
 [**Skills I learned**]{.underline}
 
@@ -87,13 +111,13 @@ In this project I validated a new bioinformatics pipeline for detection of genom
 
 **Technique:** shallow whole genome sequencing (sWGS)
 
-**Codebase:** [R](https://github.com/joe-m-shaw/homologous_recombination_deficiency)
+**Code:** R
 
 [**Skills I learned**]{.underline}
 
 - How to analyse sWGS data 
-- How to query an SQL database with dbplyr using an ODBC connection
-- How to parse information from PDFs with pdftools using regular expressions and raw strings
+- How to query an SQL database with [dbplyr](https://dbplyr.tidyverse.org/) using an ODBC connection
+- How to parse information from PDFs with [pdftools](https://docs.ropensci.org/pdftools/) using regular expressions and raw strings
 
 # Spinocerebellar Ataxia type 36
 
@@ -109,7 +133,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** repeat-primed PCR and flanking PCR
 
-**Codebase:** [R](https://github.com/joe-m-shaw/repeat_confirmations_project)
+**Code:** R
 
 [**Skills I learned**]{.underline}
 
@@ -131,7 +155,7 @@ Spinocerebellar Ataxia type 36 ([SCA36](https://pubmed.ncbi.nlm.nih.gov/25593102
 
 **Technique:** multiple repeat-primed PCRs and flanking PCR
 
-**Codebase:** [R](https://github.com/joe-m-shaw/repeat_confirmations_project)
+**Code:** R
 
 [**Skills I learned**]{.underline}
 
@@ -153,7 +177,7 @@ The aim of this project was to confirm mosaic sequence variants for rare skin di
 
 **Technique:** ddPCR
 
-**Codebase:** [R](https://github.com/joe-m-shaw/ddpcr_mosaicism)
+**Code:** R
 
 [**Skills I learned**]{.underline}
 
@@ -175,7 +199,7 @@ In this project I developed a ddPCR test for sickle cell disease which could dia
 
 **Technique:** droplet digital PCR
 
-**Codebase:** [R and JAGS](https://github.com/joe-m-shaw/ddpcr_nipd)
+**Code:** [R and JAGS](https://github.com/joe-m-shaw/ddpcr_nipd)
 
 [**Skills I learned**]{.underline}
 
