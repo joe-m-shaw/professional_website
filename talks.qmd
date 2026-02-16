@@ -2,7 +2,10 @@
 title: "Recorded talks"
 ---
 
-# Why R is a clinical scientist's best friend
+# Shattered pottery and cancer data: using R to rejoin the pieces (NHS RPySOC 2025)
+
+{{< video https://www.youtube.com/watch?v=qDBYP3pzz4U >}}
+
+# Why R is a clinical scientist's best friend (NHS RPySOC 2024)
 
 {{< video https://www.youtube.com/watch?v=TdfkSNIIGps >}}
-
