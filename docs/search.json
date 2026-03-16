@@ -4,7 +4,7 @@
     "href": "writing.html",
     "title": "Writing",
     "section": "",
-    "text": "Learning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Coverage and Confidence\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "publications.html",
@@ -112,11 +112,32 @@
     "text": "General programming and data science\n“The Turing Way” website made by The Turing Way Community This is a brilliant crowd-sourced repository of knowledge for coding and data science.\n“The Pragmatic Programmer: 2nd edition” by Andrew Hunt and David Thomas\nThis is a lovely textbook that I have a hardback copy of. It doesn’t focus on a specific language and instead is more of a practical and philosophical discussion on how to write good code."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hi, I’m Joe.",
+    "objectID": "fun_projects.html",
+    "href": "fun_projects.html",
+    "title": "Fun Projects",
     "section": "",
-    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer."
+    "text": "These are a collection of fun projects with R that I’ve done over the years.\n\n\n\n\n\n\n\n\nCoverage and Confidence\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "If you’d like to get in contact, my work email is joseph.shaw3 at symbol nhs.net."
+  },
+  {
+    "objectID": "baseball_plots.html",
+    "href": "baseball_plots.html",
+    "title": "I became a baseball stats nerd",
+    "section": "",
+    "text": "I read the book “Moneyball” by Michael Lewis and got really interested in baseball statistics. If you haven’t read the book, or watched the movie adaptation with Brad Pitt and Jonah Hill, Moneyball is the story of the Oakland Athletics baseball team, who use statistical analysis to find players that are under-valued by the more traditional evaluations of baseball scouts.\nI then had a chat with my friend Alvin, who is now the manager of the Richmond Dukes baseball team in London. He explained the rules of baseball to me, and I went along to see the Dukes play one Sunday afternoon. Alvin then mentioned he was writing a review article of the team’s performance that season, and needed some nice plots to illustrate how the team was improving.\nSo I got access to the team’s statistics and made some fun graphs in ggplot2, with the club’s colours for the colour scheme and their logo added in. It was really fun to do!"
+  },
+  {
+    "objectID": "coding.html",
+    "href": "coding.html",
+    "title": "Coding",
+    "section": "",
+    "text": "I’ve been coding in R since 2019 and I love it!\nAs part of my continuing professional development I’m aiming to get better at coding and to learn new skills. I’m documenting my notes with Quarto (which this website is also built with) on this public Github repo."
   },
   {
     "objectID": "education.html",
@@ -140,32 +161,25 @@
     "text": "Training\nNHS Scientist Training Programme | Great Ormond Street Hospital for Children | Sept 2016-Sept 2019\nMSc Clinical Science (Genomics) | University of Manchester | Sept 2016-June 2019\nBSc Biomedical Sciences | University of Edinburgh | Sept 2011 – June 2014"
   },
   {
-    "objectID": "coding.html",
-    "href": "coding.html",
-    "title": "Coding",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi, I’m Joe.",
     "section": "",
-    "text": "I’ve been coding in R since 2019 and I love it!\nAs part of my continuing professional development I’m aiming to get better at coding and to learn new skills. I’m documenting my notes with Quarto (which this website is also built with) on this public Github repo."
+    "text": "I am a clinical scientist in genetics, working in the UK’s National Health Service.\nI specialise in developing new genetic tests for rare diseases and cancer."
   },
   {
-    "objectID": "baseball_plots.html",
-    "href": "baseball_plots.html",
-    "title": "I became a baseball stats nerd",
+    "objectID": "posts/coverage_and_confidence.html",
+    "href": "posts/coverage_and_confidence.html",
+    "title": "Coverage and Confidence",
     "section": "",
-    "text": "I read the book “Moneyball” by Michael Lewis and got really interested in baseball statistics. If you haven’t read the book, or watched the movie adaptation with Brad Pitt and Jonah Hill, Moneyball is the story of the Oakland Athletics baseball team, who use statistical analysis to find players that are under-valued by the more traditional evaluations of baseball scouts.\nI then had a chat with my friend Alvin, who is now the manager of the Richmond Dukes baseball team in London. He explained the rules of baseball to me, and I went along to see the Dukes play one Sunday afternoon. Alvin then mentioned he was writing a review article of the team’s performance that season, and needed some nice plots to illustrate how the team was improving.\nSo I got access to the team’s statistics and made some fun graphs in ggplot2, with the club’s colours for the colour scheme and their logo added in. It was really fun to do!"
+    "text": "2026-03-16\nThis is my attempt to explain how binomial probability can be used to calculate statistical confidence in genetic testing.\nThis all began because in the PanSolid next generation sequencing documentation the coverage value of 138X is mentioned frequently, and I wasn’t sure why."
   },
   {
-    "objectID": "contact.html",
-    "href": "contact.html",
-    "title": "Contact",
-    "section": "",
-    "text": "If you’d like to get in contact, my work email is joseph.shaw3 at symbol nhs.net."
-  },
-  {
-    "objectID": "fun_projects.html",
-    "href": "fun_projects.html",
-    "title": "Fun Projects",
-    "section": "",
-    "text": "These are a collection of fun projects with R that I’ve done over the years.\n\n\n\n\n\n\n\n\nLearning to Code\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "objectID": "posts/coverage_and_confidence.html#factors",
+    "href": "posts/coverage_and_confidence.html#factors",
+    "title": "Coverage and Confidence",
+    "section": "Factors",
+    "text": "Factors\nLet’s go through those factors one by one:\n\nCoverage\nThe depth of coverage (or “coverage” for short) is the number of sequencing reads that overlap a specific genomic coordinate.\nCoverage will vary from run to run, sample to sample, and coordinate to coordinate.\nAs we are using unique molecular identifiers (UMIs) in our sequencing, we can make the assumption that every sequencing read comes from one DNA molecule.\nThat means, if we get 100 reads overlapping a coordinate, we have sequenced 100 molecules containing that coordinate.\n\n\nVariant allele frequency (VAF)\nWhen we talk about the variant allele frequency we want to exclude, we are talking about the true frequency of the variant in the sample, not whatever frequency we measure from our test.\nLet’s imagine we are all-knowing gods, and we can see individual molecules of DNA. We look at a tube of DNA and count that there are 100 million molecules of DNA, and 10 million of those molecules contain a particular variant. That means our tube of DNA (our sample) has a variant allele frequency of 10%.\nFor clarity, let’s call this our “true VAF”.\nNow let’s go back to being mere mortals who run tests in a genetics lab. Not every molecule of DNA in the tube will be sequenced by our test, because not all the sample gets run through the sequencer. That means we will only sequence a subset of those molecules, and then calculate a VAF based on the results. We can call this our “measured VAF”.\nThe difference between the “true VAF” and our “measured VAF” will be important later on.\n\n\nVariant calling threshold\nThe third factor is that we are looking at the results of a bioinformatic pipeline, which has a particular pre-set VAF threshold for presenting variants in the output.\nWhere this VAF threshold is set will have an impact on our confidence in excluding a variant.\nFor example, let’s say there is a variant present in 10 reads at 100X coverage – the VAF is 10%. But if the variant calling threshold is 20%, then we will not be shown the variant in the pipeline output. Which means we would still not report the variant, and it would be a false negative."
   },
   {
     "objectID": "projects.html",

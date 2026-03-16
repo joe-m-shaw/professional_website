@@ -2,12 +2,14 @@
   {
     "listing": "/writing.html",
     "items": [
+      "/posts/coverage_and_confidence.html",
       "/posts/how_to_learn_to_code.html"
     ]
   },
   {
     "listing": "/fun_projects.html",
     "items": [
+      "/posts/coverage_and_confidence.html",
       "/posts/how_to_learn_to_code.html"
     ]
   }
