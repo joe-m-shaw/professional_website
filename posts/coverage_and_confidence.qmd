@@ -144,7 +144,7 @@ dbinom(10, 100, 0.1)
 
 This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if we sequence 100 reads (i.e. 100X coverage) from our sample which has a true VAF of 10%.
 
-But, given the same coverage and true VAF, what would the probability of finding exactly 4 variant reads be?
+Let's take another random example. Let's say that, instead of 10 variant reads, we want to calculate the probability of finding exactly 4 variant reads.
 
 We can recalculate this with R or Excel, changing the first argument to 4, instead of 10.
 
