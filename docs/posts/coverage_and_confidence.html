@@ -237,16 +237,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="variant-allele-frequency-vaf" class="level3">
 <h3 class="anchored" data-anchor-id="variant-allele-frequency-vaf">Variant allele frequency (VAF)</h3>
 <p>When we talk about the variant allele frequency we want to exclude, we are talking about the true frequency of the variant in the sample, not whatever frequency we measure from our test.</p>
-<p>Let’s imagine we are all-knowing gods, and we can see individual molecules of DNA. We look at a tube of DNA and count that there are 100 million molecules of DNA, and 10 million of those molecules contain a particular variant. That means our tube of DNA (our sample) has a variant allele frequency of 10%.</p>
+<p>Let’s imagine we are all-knowing gods (yay), and we can see individual molecules of DNA. We look at a tube of DNA and count that there are 100 million molecules of DNA, and 10 million of those molecules contain a particular variant. That means our tube of DNA (our sample) has a variant allele frequency of 10%.</p>
 <p>For clarity, let’s call this our “true VAF”.</p>
-<p>Now let’s go back to being mere mortals who run tests in a genetics lab. Not every molecule of DNA in the tube will be sequenced by our test, because not all the sample gets run through the sequencer. That means we will only sequence a subset of those molecules, and then calculate a VAF based on the results. We can call this our “measured VAF”.</p>
+<p>Now let’s go back to being mere mortals who run tests in a genetics lab (sigh). Not every molecule of DNA in the tube will be sequenced by our test, because not all the sample gets run through the sequencer. That means we will only sequence a subset of those molecules, and then calculate a VAF based on the results. We can call this our “measured VAF”.</p>
 <p>The difference between the “true VAF” and our “measured VAF” will be important later on.</p>
 </section>
 <section id="variant-calling-threshold" class="level3">
 <h3 class="anchored" data-anchor-id="variant-calling-threshold">Variant calling threshold</h3>
 <p>The third factor is that we are looking at the results of a bioinformatic pipeline, which has a particular pre-set VAF threshold for presenting variants in the output.</p>
 <p>Where this VAF threshold is set will have an impact on our confidence in excluding a variant.</p>
-<p>For example, let’s say there is a variant present in 10 reads at 100X coverage – the VAF is 10%. But if the variant calling threshold is 20%, then we will not be shown the variant in the pipeline output. Which means we would still not report the variant, and it would be a false negative.</p>
+<p>For example, let’s say there is a variant present in 10 reads at 100X coverage – the measured VAF is 10%. But if the variant calling threshold is 20%, then we will not be shown the variant in the pipeline output. Which means we would still not report the variant, and it would be a false negative.</p>
 </section>
 </section>
 </section>
@@ -260,89 +260,158 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Let’s go back to the example from before: we have a sample tube which contains 100 million molecules of DNA, and the “true VAF” of the variant we are interested in is 10%.</p>
 <p>If we randomly sequence only 100 molecules, how many will contain the variant?</p>
-<p>Well, it’s actually impossible to say for certain, because it is totally random which 100 molecules end up being sequenced out of the 100 millions molecules in the tube.</p>
+<p>Well, it’s actually impossible to say for certain, because it is totally random which 100 molecules end up being sequenced out of the 100 million molecules in the tube.</p>
 <p>But what we can do is predict the likelihood of different possibilities.</p>
 <p>This is where the statistics comes in.</p>
 <p>We can use a binomial distribution calculation.</p>
-<p>I will be perfectly honest: I do not understand the maths behind this calculation. I am just a humble clinical scientist, not an all-knowing statistics god. But we can still use binomial distribution calculations to answer these problems.</p>
+<p>I will be perfectly honest: I do not understand the maths behind this calculation. I am just a humble clinical scientist, not an all-knowing statistics god. But I’m trying my best.</p>
 </section>
 <section id="binomial-distribution-calculations" class="level1">
 <h1>Binomial distribution calculations</h1>
-<p>Let’s ask this question: how likely is it that 10 reads out of our randomly selected 100 reads will contain the variant.</p>
-<p>In Microsoft Excel we do this calculation:</p>
+<p>Binomial statistics starts with these concepts:</p>
+<ul>
+<li><p>Every time you sample data is a “trial”</p></li>
+<li><p>The outcome of a trial can only be either “success” or “failure”</p></li>
+<li><p>The probability of success remains constant whilst you’re running trials</p></li>
+</ul>
+<p>We can map these concepts onto next generation sequencing:</p>
+<ul>
+<li><p>Each “trial” is a sequencing read</p></li>
+<li><p>The outcome is the read either has a variant or doesn’t have a variant</p></li>
+<li><p>The probability of the read having a variant is the true VAF in the sample</p></li>
+</ul>
+<p>Let’s then use binomial distribution to answer this question: how likely is it that 10 reads out of our randomly selected 100 reads will contain the variant?</p>
+<p>In Microsoft Excel we can do this calculation:</p>
 <p>=BINOM.DIST(10, 100, 0.1,FALSE)</p>
 <ul>
-<li><p>Number of successes is 10 (i.e.&nbsp;number of reads with the variant)</p></li>
+<li><p>The number of successes is 10 (i.e.&nbsp;number of reads with the variant)</p></li>
 <li><p>Total number of trials is 100 (i.e.&nbsp;the coverage, our total number of reads)</p></li>
 <li><p>The fixed probability is 0.1 (10%) (i.e.&nbsp;the true VAF)</p></li>
 </ul>
 <p>In R, we can use the <code>dbinom</code> function.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1318653</code></pre>
 </div>
 </div>
 <p>This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if we sequence 100 reads (i.e.&nbsp;100X coverage) from our sample which has a true VAF of 10%.</p>
-<p>But, given the same coverage and true VAF, what would the probability of selecting exactly only 5 variant reads be?</p>
-<p>We can recalculate this with R or Excel, changing the first argument to 5, instead of 10.</p>
+<p>But, given the same coverage and true VAF, what would the probability of finding exactly 4 variant reads be?</p>
+<p>We can recalculate this with R or Excel, changing the first argument to 4, instead of 10.</p>
+<p>=BINOM.DIST(4, 100, 0.1,FALSE)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">4</span>, <span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0338658</code></pre>
+<pre><code>[1] 0.0158746</code></pre>
 </div>
 </div>
-<p>The probability of finding exactly 5 variant read would be 0.0338658 (3.3%). So it would be less likely, but still possible.</p>
-<p>For me, this all makes more sense when we plot the results as a graph (<a href="#fig-probability-density" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p>The probability of finding exactly 4 variant reads would be 0.0158746 (1.6%). So it would be less likely, but still possible.</p>
+<p>For me, this all makes more sense when we plot the results as a graph.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reads =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y_prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_reads, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> <span class="dv">100</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">prob =</span> <span class="fl">0.1</span>))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plot_prob_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> n_reads, <span class="at">y =</span> y_prob)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of reads"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probability of detecting variant in number of reads"</span>) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.15</span>, <span class="at">by =</span> <span class="fl">0.01</span>)) <span class="sc">+</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plot_prob_density</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reads =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">4</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y_prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_reads, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> <span class="dv">100</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">prob =</span> <span class="fl">0.1</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plot_prob_col <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> n_reads, <span class="at">y =</span> y_prob)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of reads"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probability of detecting variant in number of reads"</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.15</span>, <span class="at">by =</span> <span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plot_prob_col</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<div id="fig-probability-density" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-probability-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="coverage_and_confidence_files/figure-html/fig-probability-density-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-probability-density-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Probability density
-</figcaption>
+<div>
+<figure class="figure">
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In this plot, we have calculated the probability of detecting a variant in 1 read, 2 reads, 3 reads etc, which shows that measuring 10 variant reads is the most likely outcome (the bar at 10 reads is the highest).</p>
-<p>Instead of calculating the probability of measuring exactly 5 variant reads, we could calculate the probability of measuring <em>5 variant reads or fewer</em>. This would mean the area within the bars to the left of and including 5 in the plot.</p>
-<p>In Microsoft Excel, we use:</p>
-<p>=BINOM.DIST(5, 100, 0.1,TRUE)</p>
-<p>And in R we use the <code>pbinom</code> function.</p>
+<p>In this plot we can see the results from our calculations: the probability of finding exactly 10 variant reads is around 0.13 and the probability of findings exactly 4 variant reads is around 0.016.</p>
+<p>We can now add in the probabilities for all the other possible numbers of variant reads we could find.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05757689</code></pre>
-</div>
-</div>
-<p>This tells us that the probability of detecting 5 variant reads or fewer in our sample is 0.058 (5.8%).</p>
-<p>Then we can flip this around: the probability of detecting more than 5 variant reads in our sample must be 100% - 5.8%, which equals 94.2%.</p>
-<p>We can show this by highlighting the sections of the probability distribution we’re talking about.</p>
-<p>94.2% of the bars are shaded in blue, and 5.8% of the bars are shaded in red.</p>
-<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_new_data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reads =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y_prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_reads, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> <span class="dv">100</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">prob =</span> <span class="fl">0.1</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plot_prob_density <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_new_data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> n_reads, <span class="at">y =</span> y_prob)) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of reads"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probability of detecting variant in number of reads"</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.15</span>, <span class="at">by =</span> <span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plot_prob_density</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this plot, we have calculated the probability of detecting a variant in 1 read, 2 reads, 3 reads etc. This gives us a nice curve of probabilities, and shows that measuring 10 variant reads is the most likely outcome (the bar at 10 reads is the highest).</p>
+<p>Instead of calculating the probability of measuring exactly 4 variant reads, we could calculate the probability of measuring <u><em>4 variant reads or fewer</em></u>. This would mean the area within the bars to the left of and including 4 in the plot.</p>
+<p>In Microsoft Excel, we use:</p>
+<p>=BINOM.DIST(4, 100, 0.1,TRUE)</p>
+<p><em>Pay attention to the last argument, which changed from FALSE to TRUE</em></p>
+<p>And in R we use the <code>pbinom</code> function.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">4</span>, <span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02371108</code></pre>
+</div>
+</div>
+<p>This tells us that the probability of detecting 4 variant reads or fewer in our sample is 0.0237 (2.37%).</p>
+<p>Then we can flip this around: the probability of detecting more than 4 variant reads in our sample must be 100% - 2.37%, which equals 97.63%.</p>
+<p>We can show this by highlighting the sections of the probability distribution we’re talking about.</p>
+<p>97.63% of the bars are shaded in blue, and 2.37% of the bars are shaded in red.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_prob_density_colour <span class="ot">&lt;-</span> plot_prob_density <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data =</span> df_new_data_for_plot <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter</span>(n_reads <span class="sc">&lt;=</span> <span class="dv">4</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">data =</span> df_new_data_for_plot <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">filter</span>(n_reads <span class="sc">&gt;</span> <span class="dv">4</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>) </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plot_prob_density_colour <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"There is a "</span>, </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">round</span>((<span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">4</span>, <span class="dv">100</span>, <span class="fl">0.1</span>))<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"% probability of detecting more than 4 variant reads"</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"(when coverage is 100X and true VAF is 10%)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -352,9 +421,109 @@ Figure&nbsp;1: Probability density
 <h1>Adding in the VAF threshold</h1>
 <p>This now brings the VAF detection threshold into play.</p>
 <p>Sticking with our example, if the VAF detection threshold is 5% VAF, and we have randomly sampled 100 reads (100X coverage), we would need at least 5 variant reads in order for the pipeline to detect the variant.</p>
-<p>Adding in this information is easy, because it’s what we already did in the last step: we ask what the cumulative probability is of detecting at least 5 variant reads in our sample.</p>
+<p>Adding in this information is easy, because it’s what we already did in the last step: we ask what the cumulative probability is of detecting more than 4 variant reads in our sample.</p>
 <p>Here is the same plot as above, but with a vertical dashed line showing were our VAF detection threshold is.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_prob_density_colour <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"There is a "</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">round</span>((<span class="dv">1</span><span class="sc">-</span><span class="fu">pbinom</span>(<span class="dv">4</span>, <span class="dv">100</span>, <span class="fl">0.1</span>))<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"% probability of detecting the variant"</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"(when coverage is 100X, true VAF is 10% and detection threshold is 5%)"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="varying-all-the-numbers" class="level1">
+<h1>Varying all the numbers</h1>
+<p>The example I’ve shown so far used simple numbers that are easy to working out percentages for: 10% of 100 reads is 10 reads etc.</p>
+<p>But what if we want to simulate scenarios and vary the coverage, true VAF and VAF detection threshold numbers?</p>
+<p>Using R, we can make a function to do this.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_read_distribution <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x_max =</span> <span class="dv">50</span>, coverage, vaf,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                   calling_threshold) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  number_of_reads_needed_to_call <span class="ot">&lt;-</span> <span class="fu">round</span>(coverage<span class="sc">*</span>(calling_threshold<span class="sc">/</span><span class="dv">100</span>), <span class="dv">0</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  number_of_reads_which_wont_call <span class="ot">&lt;-</span> number_of_reads_needed_to_call<span class="dv">-1</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  probability_of_not_calling_variant <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> number_of_reads_which_wont_call,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">size =</span> coverage,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prob =</span> vaf<span class="sc">/</span><span class="dv">100</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  probability_of_calling_variant <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>probability_of_not_calling_variant</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  df_data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reads =</span> <span class="fu">seq</span>(<span class="dv">0</span>, x_max)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y_prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_reads, </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> coverage, </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                           <span class="at">prob =</span> vaf<span class="sc">/</span><span class="dv">100</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">status =</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>             n_reads <span class="sc">&gt;=</span> number_of_reads_needed_to_call <span class="sc">~</span><span class="st">"Detected"</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>             n_reads <span class="sc">&lt;</span> number_of_reads_needed_to_call <span class="sc">~</span><span class="st">"Not detected"</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> n_reads, <span class="at">y =</span> y_prob)) <span class="sc">+</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> status), <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> number_of_reads_needed_to_call, </span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, x_max, <span class="at">by =</span> <span class="dv">10</span>),</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                                  number_of_reads_needed_to_call)) <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of reads"</span>,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Probability of detecting variant in number of reads"</span>,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"If coverage is "</span>, coverage, <span class="st">"X and true VAF is "</span>, </span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>                           vaf,<span class="st">"% and VAF detection threshold is "</span>,</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>                        calling_threshold, <span class="st">"% ("</span>,</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>                        number_of_reads_needed_to_call,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>                        <span class="st">" reads)"</span>),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Probability of detecting variant: "</span>,</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">round</span>(probability_of_calling_variant<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>) ,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Variant status"</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Then we can imagine a scenario where we have a true VAF of 10% and a VAF detection threshold of 4%. If we wanted to have over 99.5% confidence of detecting a variant if it was present, what coverage should we aim for?</p>
+<p>The answer is 138X, and this is why that number is seen so frequently in PanSolid documentation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">coverage =</span> <span class="dv">138</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vaf =</span> <span class="dv">10</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">calling_threshold =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But what if the true VAF was only 2%?</p>
+<p>Then we’d be in trouble, because at 138X the chance of detecting the variant would be pretty low.</p>
+<p>This means it would be a really bad idea to issue a normal report and say that we had excluded variants down to 2% VAF, because if a variant was present at a true VAF of 2% there is only a 5.98% chance that we would detect it.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">coverage =</span> <span class="dv">138</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vaf =</span> <span class="dv">2</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">calling_threshold =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -363,80 +532,18 @@ Figure&nbsp;1: Probability density
 </div>
 </div>
 </div>
-</section>
-<section id="varying-all-the-numbers" class="level1">
-<h1>Varying all the numbers</h1>
-<p>The example I’ve walked through used simple numbers that are easy to working out percentages for: 10% of 100 reads is 10 reads etc.</p>
-<p>But what if we want to simulate scenarios and vary the coverage, true VAF and VAF detection threshold numbers?</p>
-<p>Using R, we can make a function to do this.</p>
+<p>Instead, to get over 99.5% confidence of detecting a variant with only 2% true VAF, we would have to lower the VAF detection threshold to 1% and increase the coverage to 1000X.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_read_distribution <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">x_max =</span> <span class="dv">50</span>, coverage, vaf,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                   calling_threshold) {</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  number_of_reads_needed_to_call <span class="ot">&lt;-</span> <span class="fu">round</span>(coverage<span class="sc">*</span>(calling_threshold<span class="sc">/</span><span class="dv">100</span>), <span class="dv">0</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  number_of_reads_which_wont_call <span class="ot">&lt;-</span> number_of_reads_needed_to_call<span class="dv">-1</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  probability_of_not_calling_variant <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> number_of_reads_which_wont_call,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">size =</span> coverage,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prob =</span> vaf<span class="sc">/</span><span class="dv">100</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  probability_of_calling_variant <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>probability_of_not_calling_variant</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  df_data_for_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reads =</span> <span class="fu">seq</span>(<span class="dv">0</span>, x_max)) <span class="sc">|&gt;</span> </span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y_prob =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> n_reads, </span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                           <span class="at">size =</span> coverage, </span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                           <span class="at">prob =</span> vaf<span class="sc">/</span><span class="dv">100</span>),</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">status =</span> <span class="fu">case_when</span>(</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>             n_reads <span class="sc">&gt;=</span> number_of_reads_needed_to_call <span class="sc">~</span><span class="st">"Detected"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>             n_reads <span class="sc">&lt;</span> number_of_reads_needed_to_call <span class="sc">~</span><span class="st">"Not detected"</span>))</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_data_for_plot, <span class="fu">aes</span>(<span class="at">x =</span> n_reads, <span class="at">y =</span> y_prob)) <span class="sc">+</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> status), <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> number_of_reads_needed_to_call, </span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">0</span>, x_max, <span class="at">by =</span> <span class="dv">10</span>),</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                                  number_of_reads_needed_to_call)) <span class="sc">+</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of reads"</span>,</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Probability of detecting variant in number of reads"</span>,</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"If coverage is "</span>, coverage, <span class="st">"X and true VAF is "</span>, </span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>                           vaf,<span class="st">"% and VAF detection threshold is "</span>,</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>                        calling_threshold, <span class="st">"%"</span>),</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Probability of detecting variant: "</span>,</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">round</span>(probability_of_calling_variant<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>),</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Variant status"</span>)</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Then we can imagine a scenario where we have a true VAF of 10% and a VAF detection threshold of 4%. If we wanted to have over 99.5% confidence of detecting a variant if it was present, what coverage should we aim for?</p>
-<p>The answer is 138X, and this is why that number is seen so frequently in PanSolid documentation.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">coverage =</span> <span class="dv">138</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vaf =</span> <span class="dv">10</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">calling_threshold =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">coverage =</span> <span class="dv">1000</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vaf =</span> <span class="dv">2</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">calling_threshold =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>To get a similar confidence of detecting a variant with only 2% true VAF, we would have to lower the VAF detection threshold to 1% and increase the coverage to 1000X.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_read_distribution</span>(<span class="at">coverage =</span> <span class="dv">1000</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">vaf =</span> <span class="dv">2</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">calling_threshold =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="coverage_and_confidence_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
