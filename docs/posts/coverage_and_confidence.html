@@ -101,6 +101,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -178,6 +207,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#binomial-distribution-calculations" id="toc-binomial-distribution-calculations" class="nav-link" data-scroll-target="#binomial-distribution-calculations">Binomial distribution calculations</a></li>
   <li><a href="#adding-in-the-vaf-threshold" id="toc-adding-in-the-vaf-threshold" class="nav-link" data-scroll-target="#adding-in-the-vaf-threshold">Adding in the VAF threshold</a></li>
   <li><a href="#varying-all-the-numbers" id="toc-varying-all-the-numbers" class="nav-link" data-scroll-target="#varying-all-the-numbers">Varying all the numbers</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul class="collapse">
+  <li><a href="#binomial-probability-equation" id="toc-binomial-probability-equation" class="nav-link" data-scroll-target="#binomial-probability-equation">Binomial probability equation</a></li>
+  <li><a href="#where-did-138x-originally-come-from" id="toc-where-did-138x-originally-come-from" class="nav-link" data-scroll-target="#where-did-138x-originally-come-from">Where did 138X originally come from?</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -263,8 +297,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Well, it’s actually impossible to say for certain, because it is totally random which 100 molecules end up being sequenced out of the 100 million molecules in the tube.</p>
 <p>But what we can do is predict the likelihood of different possibilities.</p>
 <p>This is where the statistics comes in.</p>
-<p>We can use a binomial distribution calculation.</p>
-<p>I will be perfectly honest: I do not understand the maths behind this calculation. I am just a humble clinical scientist, not an all-knowing statistics god. But I’m trying my best.</p>
+<p>We can use a binomial distribution calculation, as recommended by the Association for Molecular Pathology in their <a href="https://pubmed.ncbi.nlm.nih.gov/28341590/">guidelines for validation of NGS panels</a>.</p>
+<p>I will be perfectly honest: I am not a statistician. I am just a humble clinical scientist, not an all-knowing statistics god. But I’m trying my best.</p>
 </section>
 <section id="binomial-distribution-calculations" class="level1">
 <h1>Binomial distribution calculations</h1>
@@ -287,6 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The number of successes is 10 (i.e.&nbsp;number of reads with the variant)</p></li>
 <li><p>Total number of trials is 100 (i.e.&nbsp;the coverage, our total number of reads)</p></li>
 <li><p>The fixed probability is 0.1 (10%) (i.e.&nbsp;the true VAF)</p></li>
+<li><p>The final argument is FALSE because we are not calculating a cumulative probability (yet)</p></li>
 </ul>
 <p>In R, we can use the <code>dbinom</code> function.</p>
 <div class="cell">
@@ -299,6 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if we sequence 100 reads (i.e.&nbsp;100X coverage) from our sample which has a true VAF of 10%.</p>
+<p>If you want to look at the full binomial distribution equation, I’ve included a worked example at the end.</p>
 <p>Let’s take another random example. Let’s say that, instead of 10 variant reads, we want to calculate the probability of finding exactly 4 variant reads.</p>
 <p>We can recalculate this with R or Excel, changing the first argument to 4, instead of 10.</p>
 <p>=BINOM.DIST(4, 100, 0.1,FALSE)</p>
@@ -498,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Then we can imagine a scenario where we have a true VAF of 10% and a VAF detection threshold of 4%. If we wanted to have over 99.5% confidence of detecting a variant if it was present, what coverage should we aim for?</p>
-<p>The answer is 138X, and this is why that number is seen so frequently in PanSolid documentation.</p>
+<p>The answer is 138X, and this is (sort of) why that number is seen so frequently in PanSolid documentation. For the full story, read the Appendix.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -548,8 +584,171 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<section id="binomial-probability-equation" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-probability-equation">Binomial probability equation</h2>
+<p>Here is a breakdown of the original binomial probability equation, which is shown below.</p>
+<p>x = variant reads, n = coverage and p = true VAF.</p>
+<p><span class="math display">\[
+P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}
+\]</span></p>
+<p>There are 3 sections.</p>
+<ol type="1">
+<li>The the binomial coefficient</li>
+</ol>
+<p><span class="math display">\[
+\binom{n}{x}
+\]</span></p>
+<ol start="2" type="1">
+<li>The success probability</li>
+</ol>
+<p><span class="math display">\[
+p^x
+\]</span></p>
+<ol start="3" type="1">
+<li>The failure probability</li>
+</ol>
+<p><span class="math display">\[
+(1-p)^{n-x}
+\]</span></p>
+<p>Calculating each in isolation then allows us to calculate the whole thing.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>binomial_coefficient <span class="ot">&lt;-</span> <span class="fu">factorial</span>(n) <span class="sc">/</span> (<span class="fu">factorial</span>(x) <span class="sc">*</span> <span class="fu">factorial</span>(n <span class="sc">-</span> x))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>success_probability <span class="ot">&lt;-</span> p<span class="sc">^</span>x</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>failure_probability <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span>(n<span class="sc">-</span>x)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>binomial_coefficient <span class="sc">*</span> success_probability <span class="sc">*</span> failure_probability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1318653</code></pre>
+</div>
+</div>
+<p>This gives the same results as using the <code>dbinom</code> function.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbinom</span>(x, n, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1318653</code></pre>
+</div>
+</div>
+</section>
+<section id="where-did-138x-originally-come-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-did-138x-originally-come-from">Where did 138X originally come from?</h2>
+<p>The reality is that 138X was decided as a coverage threshold in previous validations, and it is simpler to keep things the same.</p>
+<p>However, there have been two separate justifications for 138X as a threshold.</p>
+<p>The original way 138X was decided on was by asking what coverage was required to confidently <em>exclude</em> a variant with a true VAF of 4%.</p>
+<p>If you start by saying that you require at least 2 reads to clinically report a variant, then a variant present in only 1 read should not be reported.</p>
+<p>You can then calculate the VAF of 1 variant read at different coverage levels, including the 95% confidence limits, as shown in the table below. The key row is where the upper 95% confidence threshold is just below 4%, which is at 138X.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">total_reads =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">138</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">278</span>, <span class="dv">300</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variant_reads =</span> <span class="dv">1</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">vaf =</span> <span class="fu">round</span>((variant_reads <span class="sc">/</span> total_reads)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf_upper =</span> <span class="fu">round</span>((<span class="fu">binom.test</span>(<span class="at">x =</span> variant_reads,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">n =</span> total_reads)<span class="sc">$</span>conf.int[<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf_lower =</span> <span class="fu">round</span>((<span class="fu">binom.test</span>(<span class="at">x =</span> variant_reads,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">n =</span> total_reads)<span class="sc">$</span>conf.int[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Total reads"</span> <span class="ot">=</span> total_reads,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Variant reads"</span> <span class="ot">=</span> variant_reads,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>         <span class="st">"VAF (%)"</span> <span class="ot">=</span> vaf,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>         <span class="st">"VAF 95% confidence upper"</span> <span class="ot">=</span> conf_upper,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>         <span class="st">"VAF 95% confidence lower"</span> <span class="ot">=</span> conf_lower)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(data_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 29%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Total reads</th>
+<th style="text-align: right;">Variant reads</th>
+<th style="text-align: right;">VAF (%)</th>
+<th style="text-align: right;">VAF 95% confidence upper</th>
+<th style="text-align: right;">VAF 95% confidence lower</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">10.65</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">5.45</td>
+<td style="text-align: right;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">138</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">3.97</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">3.66</td>
+<td style="text-align: right;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">278</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">1.99</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">1.84</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -96,9 +96,9 @@ But what we can do is predict the likelihood of different possibilities.
 
 This is where the statistics comes in.
 
-We can use a binomial distribution calculation.
+We can use a binomial distribution calculation, as recommended by the Association for Molecular Pathology in their [guidelines for validation of NGS panels](https://pubmed.ncbi.nlm.nih.gov/28341590/).
 
-I will be perfectly honest: I do not understand the maths behind this calculation.
+I will be perfectly honest: I am not a statistician.
 I am just a humble clinical scientist, not an all-knowing statistics god.
 But I'm trying my best.
 
@@ -132,6 +132,8 @@ In Microsoft Excel we can do this calculation:
 
 - The fixed probability is 0.1 (10%) (i.e. the true VAF)
 
+- The final argument is FALSE because we are not calculating a cumulative probability (yet)
+
 In R, we can use the `dbinom` function.
 
 ```{r}
@@ -143,6 +145,8 @@ dbinom(10, 100, 0.1)
 ```
 
 This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if we sequence 100 reads (i.e. 100X coverage) from our sample which has a true VAF of 10%.
+
+If you want to look at the full binomial distribution equation, I've included a worked example at the end.
 
 Let's take another random example. Let's say that, instead of 10 variant reads, we want to calculate the probability of finding exactly 4 variant reads.
 
@@ -347,7 +351,8 @@ plot_read_distribution <- function(x_max = 50, coverage, vaf,
 Then we can imagine a scenario where we have a true VAF of 10% and a VAF detection threshold of 4%.
 If we wanted to have over 99.5% confidence of detecting a variant if it was present, what coverage should we aim for?
 
-The answer is 138X, and this is why that number is seen so frequently in PanSolid documentation.
+The answer is 138X, and this is (sort of) why that number is seen so frequently in PanSolid documentation.
+For the full story, read the Appendix.
 
 ```{r}
 #| include: TRUE
@@ -381,5 +386,103 @@ Instead, to get over 99.5% confidence of detecting a variant with only 2% true V
 plot_read_distribution(coverage = 1000,
                        vaf = 2,
                        calling_threshold = 1)
+
+```
+
+# Appendix
+
+## Binomial probability equation
+
+Here is a breakdown of the original binomial probability equation, which is shown below.
+
+x = variant reads, n = coverage and p = true VAF.
+
+$$
+P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}
+$$
+
+There are 3 sections.
+
+1. The the binomial coefficient
+
+$$
+\binom{n}{x}
+$$
+
+2. The success probability 
+
+$$
+p^x
+$$
+
+3. The failure probability
+
+$$
+(1-p)^{n-x}
+$$
+
+Calculating each in isolation then allows us to calculate the whole thing.
+
+```{r}
+#| label: full-worked-example
+
+x <- 10
+
+n <- 100
+
+p <- 0.1
+
+binomial_coefficient <- factorial(n) / (factorial(x) * factorial(n - x))
+
+success_probability <- p^x
+
+failure_probability <- (1-p)^(n-x)
+
+binomial_coefficient * success_probability * failure_probability
+
+```
+
+This gives the same results as using the `dbinom` function.
+
+```{r}
+#| label: full-worked-example-with-dbinom
+
+dbinom(x, n, p)
+
+```
+
+## Where did 138X originally come from?
+
+The reality is that 138X was decided as a coverage threshold in previous validations, and it is simpler to keep things the same.
+
+However, there have been two separate justifications for 138X as a threshold.
+
+The original way 138X was decided on was by asking what coverage was required to confidently *exclude* a variant with a true VAF of 4%.
+
+If you start by saying that you require at least 2 reads to clinically report a variant, then a variant present in only 1 read should not be reported.
+
+You can then calculate the VAF of 1 variant read at different coverage levels, including the 95% confidence limits, as shown in the table below.
+The key row is where the upper 95% confidence threshold is just below 4%, which is at 138X.
+
+```{r}
+#| label: binom-test
+
+data_df <- data.frame(
+  total_reads = c(50, 100, 138, 150, 200, 278, 300)) |> 
+  mutate(variant_reads = 1,
+         vaf = round((variant_reads / total_reads)*100,2)) |> 
+  rowwise() |> 
+  mutate(
+    conf_upper = round((binom.test(x = variant_reads,
+                                   n = total_reads)$conf.int[2])*100, 2),
+    conf_lower = round((binom.test(x = variant_reads,
+                                   n = total_reads)$conf.int[1])*100, 2)) |> 
+  rename("Total reads" = total_reads,
+         "Variant reads" = variant_reads,
+         "VAF (%)" = vaf,
+         "VAF 95% confidence upper" = conf_upper,
+         "VAF 95% confidence lower" = conf_lower)
+
+knitr::kable(data_df)
 
 ```
