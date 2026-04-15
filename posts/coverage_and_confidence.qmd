@@ -1,22 +1,32 @@
 ---
-title: "Coverage and Confidence"
+title: "My limit of detection app"
+date: 2026-04-15
 format:
   html:
     code-fold: true
     code-summary: "Show code"
 ---
 
-2026-03-16
+As part of a recent project to validate a next generation sequencing (NGS) test
+for leukemia, I needed to learn about how binomial statistics can be used
+to estimate a test's limit of detection.
 
-This is my attempt to explain how binomial probability can be used to calculate statistical confidence in genetic testing.
+To help with my understanding, I made 
+[this interactive online app](https://joe-m-shaw.shinyapps.io/lod-app/).
 
-This all began because in the PanSolid next generation sequencing documentation the coverage value of 138X is mentioned frequently, and I wasn't sure why.
+This blog-post talks aims to explain the theory of how this works.
+It is intended to be read by people who already have an understanding of the 
+technical details of next generation sequencing, including the concepts of 
+coverage and variant allele frequencies.
+
+If you have any comments or suggestions, please get in touch!
 
 # Introduction
 
 In cancer genetic testing, we want to avoid false negative results.
 
-A false negative result is when the lab reports that a patient's sample did not contain a genetic variant, when really it did.
+A false negative result is when the lab reports that a patient's sample did not 
+contain a genetic variant, when really it did.
 
 That means if we don’t detect a variant in a sample there are 2 possibilities:
 
@@ -35,50 +45,69 @@ It depends on 3 factors:
 2.  The variant allele frequency we want to exclude
 3.  The threshold we apply in the pipeline for calling variants
 
-## Factors
+# Factors
 
 Let’s go through those factors one by one:
 
-### Coverage
+## 1. Coverage
 
-The depth of coverage (or "coverage" for short) is the number of sequencing reads that overlap a specific genomic coordinate.
+The depth of coverage (or "coverage" for short) is the number of sequencing 
+reads that overlap a specific genomic coordinate.
 
-Coverage will vary from run to run, sample to sample, and coordinate to coordinate.
+Coverage will vary from run to run, sample to sample, and coordinate to 
+coordinate.
 
-As we are using unique molecular identifiers (UMIs) in our sequencing, we can make the assumption that every sequencing read comes from one DNA molecule.
+If we use unique molecular identifiers (UMIs) in our sequencing, we 
+can make the assumption that every sequencing read comes from one DNA 
+molecule.
 
-That means, if we get 100 reads overlapping a coordinate, we have sequenced 100 molecules containing that coordinate.
+That means, if we get 100 reads overlapping a coordinate, we assume we
+have sequenced 100 molecules containing that coordinate.
 
-### Variant allele frequency (VAF)
+## 2. Variant allele frequency (VAF)
 
-When we talk about the variant allele frequency we want to exclude, we are talking about the true frequency of the variant in the sample, not whatever frequency we measure from our test.
+When we talk about the variant allele frequency we want to exclude, we are 
+talking about the true frequency of the variant in the sample, not whatever 
+frequency we measure from our test.
 
-Let's imagine we are all-knowing gods (yay), and we can see individual molecules of DNA.
-We look at a tube of DNA and count that there are 100 million molecules of DNA, and 10 million of those molecules contain a particular variant.
+Let's imagine we are all-knowing gods (yay), and we can see individual molecules 
+of DNA.
+We look at a tube of DNA and count that there are 100 million molecules of DNA, 
+and 10 million of those molecules contain a particular variant.
 That means our tube of DNA (our sample) has a variant allele frequency of 10%.
 
 For clarity, let's call this our "true VAF".
 
 Now let's go back to being mere mortals who run tests in a genetics lab (sigh).
-Not every molecule of DNA in the tube will be sequenced by our test, because not all the sample gets run through the sequencer.
-That means we will only sequence a subset of those molecules, and then calculate a VAF based on the results.
+Not every molecule of DNA in the tube will be sequenced by our test, because not 
+all the sample gets run through the sequencer.
+That means we will only sequence a subset of those molecules, and then calculate 
+a VAF based on the results.
 We can call this our "measured VAF".
 
-The difference between the "true VAF" and our "measured VAF" will be important later on.
+The difference between the "true VAF" and our "measured VAF" will be important 
+later on.
 
-### Variant calling threshold
+## 3. Variant calling threshold
 
-The third factor is that we are looking at the results of a bioinformatic pipeline, which has a particular pre-set VAF threshold for presenting variants in the output.
+The third factor is that we are looking at the results of a bioinformatic 
+pipeline, which has a particular pre-set VAF threshold for presenting variants 
+in the output.
 
-Where this VAF threshold is set will have an impact on our confidence in excluding a variant.
+Where this VAF threshold is set will have an impact on our confidence in 
+excluding a variant.
 
-For example, let’s say there is a variant present in 10 reads at 100X coverage – the measured VAF is 10%. 
-But if the variant calling threshold is 20%, then we will not be shown the variant in the pipeline output.
-Which means we would still not report the variant, and it would be a false negative.
+For example, let’s say there is a variant present in 10 reads at 100X 
+coverage – the measured VAF is 10%. 
+But if the variant calling threshold is 20%, then we will not be shown the 
+variant in the pipeline output.
+Which means we would still not report the variant, and it would be a 
+false negative.
 
 # Random sampling
 
-I've already mentioned that not every molecule of DNA in our sample tube will be sequenced by our assay.
+I've already mentioned that not every molecule of DNA in our sample tube 
+will be sequenced by our assay.
 
 These are two key points:
 
@@ -86,23 +115,31 @@ These are two key points:
 
 - It is completely random which molecules end up in the sequenced subset
 
-Let's go back to the example from before: we have a sample tube which contains 100 million molecules of DNA, and the "true VAF" of the variant we are interested in is 10%.
+Let's go back to the example from before: we have a sample tube which contains
+100 million molecules of DNA, and the "true VAF" of the variant we are 
+interested in is 10%.
 
 If we randomly sequence only 100 molecules, how many will contain the variant?
 
-Well, it's actually impossible to say for certain, because it is totally random which 100 molecules end up being sequenced out of the 100 million molecules in the tube.
+Well, it's actually impossible to say for certain, because it is totally 
+random which 100 molecules end up being sequenced out of the 100 million 
+molecules in the tube.
 
 But what we can do is predict the likelihood of different possibilities.
 
 This is where the statistics comes in.
 
-We can use a binomial distribution calculation, as recommended by the Association for Molecular Pathology in their [guidelines for validation of NGS panels](https://pubmed.ncbi.nlm.nih.gov/28341590/).
+We can use a binomial distribution calculation, as recommended by the 
+Association for Molecular Pathology in their guidelines for validation of NGS panels
+[(Jennings et al, 2017)](https://pubmed.ncbi.nlm.nih.gov/28341590/).
 
-I will be perfectly honest: I am not a statistician.
-I am just a humble clinical scientist, not an all-knowing statistics god.
-But I'm trying my best.
+I will be perfectly honest: I am not a statistician, or an all-knowing god.
 
-# Binomial distribution calculations
+I am just a humble clinical scientist, trying my best to understand.
+
+That said, this is how I [*think*]{.underline} it works ...
+
+# Binomial statistics
 
 Binomial statistics starts with these concepts:
 
@@ -116,11 +153,12 @@ We can map these concepts onto next generation sequencing:
 
 - Each "trial" is a sequencing read
 
-- The outcome is the read either has a variant or doesn't have a variant
+- The outcome is that the read either has a variant or doesn't have a variant
 
 - The probability of the read having a variant is the true VAF in the sample
 
-Let's then use binomial distribution to answer this question: how likely is it that 10 reads out of our randomly selected 100 reads will contain the variant?
+Let's then use binomial distribution to answer this question: how likely is 
+it that 10 reads out of our randomly selected 100 reads will contain the variant?
 
 In Microsoft Excel we can do this calculation:
 
@@ -144,13 +182,19 @@ dbinom(10, 100, 0.1)
 
 ```
 
-This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if we sequence 100 reads (i.e. 100X coverage) from our sample which has a true VAF of 10%.
+This means there is a 0.13 (13%) chance of finding exactly 10 variant reads if 
+we sequence 100 reads (i.e. 100X coverage) from our sample which has a true 
+VAF of 10%.
 
-If you want to look at the full binomial distribution equation, I've included a worked example at the end.
+If you want to look at the full binomial distribution equation (and if so, can
+we be friends?), I've included a 
+worked example in the @sec-appendix.
 
-Let's take another random example. Let's say that, instead of 10 variant reads, we want to calculate the probability of finding exactly 4 variant reads.
+Let's take another random example. Let's say that, instead of 10 variant reads, 
+we want to calculate the probability of finding exactly 4 variant reads.
 
-We can recalculate this with R or Excel, changing the first argument to 4, instead of 10.
+We can recalculate this with R or Excel, changing the first argument to 4, 
+instead of 10.
 
 =BINOM.DIST(4, 100, 0.1,FALSE)
 
@@ -193,9 +237,12 @@ plot_prob_col
 
 ```
 
-In this plot we can see the results from our calculations: the probability of finding exactly 10 variant reads is around 0.13 and the probability of findings exactly 4 variant reads is around 0.016.
+In this plot we can see the results from our calculations: the probability of 
+finding exactly 10 variant reads is around 0.13 and the probability of findings 
+exactly 4 variant reads is around 0.016.
 
-We can now add in the probabilities for all the other possible numbers of variant reads we could find.
+We can now add in the probabilities for all the other possible numbers of variant 
+reads we could find.
 
 ```{r}
 #| include: TRUE
@@ -218,10 +265,13 @@ plot_prob_density
 
 ```
 
-In this plot, we have calculated the probability of detecting a variant in 1 read, 2 reads, 3 reads etc.
-This gives us a nice curve of probabilities, and shows that measuring 10 variant reads is the most likely outcome (the bar at 10 reads is the highest).
+In this plot, we have calculated the probability of detecting a variant in 1 
+read, 2 reads, 3 reads etc.
+This gives us a nice curve of probabilities, and shows that measuring 10 
+variant reads is the most likely outcome (the bar at 10 reads is the highest).
 
-Instead of calculating the probability of measuring exactly 4 variant reads, we could calculate the probability of measuring [*4 variant reads or fewer*]{.underline}. 
+Instead of calculating the probability of measuring exactly 4 variant reads, 
+we could calculate the probability of measuring [*4 variant reads or fewer*]{.underline}. 
 This would mean the area within the bars to the left of and including 4 in the plot.
 
 In Microsoft Excel, we use:
@@ -240,11 +290,14 @@ pbinom(4, 100, 0.1)
 
 ```
 
-This tells us that the probability of detecting 4 variant reads or fewer in our sample is 0.0237 (2.37%).
+This tells us that the probability of detecting 4 variant reads or fewer in our 
+sample is 0.0237 (2.37%).
 
-Then we can flip this around: the probability of detecting more than 4 variant reads in our sample must be 100% - 2.37%, which equals `r 100-2.37`%.
+Then we can flip this around: the probability of detecting more than 4 variant 
+reads in our sample must be 100% - 2.37%, which equals `r 100-2.37`%.
 
-We can show this by highlighting the sections of the probability distribution we're talking about.
+We can show this by highlighting the sections of the probability distribution 
+we're talking about.
 
 `r 100-2.37`% of the bars are shaded in blue, and 2.37% of the bars are shaded in red.
 
@@ -267,15 +320,20 @@ plot_prob_density_colour +
 
 ```
 
-# Adding in the VAF threshold
+# Adding the VAF threshold
 
 This now brings the VAF detection threshold into play.
 
-Sticking with our example, if the VAF detection threshold is 5% VAF, and we have randomly sampled 100 reads (100X coverage), we would need at least 5 variant reads in order for the pipeline to detect the variant.
+Sticking with our example, if the VAF detection threshold is 5% VAF, and we have
+randomly sampled 100 reads (100X coverage), we would need at least 5 variant 
+reads in order for the pipeline to detect the variant.
 
-Adding in this information is easy, because it's what we already did in the last step: we ask what the cumulative probability is of detecting more than 4 variant reads in our sample.
+Adding in this information is easy, because it's what we already did in the 
+last step: we ask what the cumulative probability is of detecting more than 
+4 variant reads in our sample.
 
-Here is the same plot as above, but with a vertical dashed line showing were our VAF detection threshold is.
+Here is the same plot as above, but with a vertical dashed line showing were 
+our VAF detection threshold is.
 
 ```{r}
 #| include: TRUE
@@ -291,11 +349,14 @@ plot_prob_density_colour +
 
 # Varying all the numbers
 
-The example I've shown so far used simple numbers that are easy to working out percentages for: 10% of 100 reads is 10 reads etc.
+The example I've shown so far used simple numbers that are easy to working out 
+percentages for: 10% of 100 reads is 10 reads etc.
 
-But what if we want to simulate scenarios and vary the coverage, true VAF and VAF detection threshold numbers?
+But what if we want to simulate scenarios and vary the coverage, true VAF and 
+VAF detection threshold numbers?
 
-Using R, we can make a function to do this.
+Using R, I made a function to do this, which I then added to the interactive
+app which I've linked to at the top of this post.
 
 ```{r}
 #| include: TRUE
@@ -348,16 +409,18 @@ plot_read_distribution <- function(x_max = 50, coverage, vaf,
 
 ```
 
-Then we can imagine a scenario where we have a true VAF of 10% and a VAF detection threshold of 4%.
-If we wanted to have over 99.5% confidence of detecting a variant if it was present, what coverage should we aim for?
+Then we can imagine a scenario where we have a true VAF of 10% and a VAF 
+detection threshold of 4%, and the coverage is 200X.
 
-The answer is 138X, and this is (sort of) why that number is seen so frequently in PanSolid documentation.
-For the full story, read the Appendix.
+If we don't detect a variant, how confident can we be that there wasn't a 
+variant with a true VAF of 10% that we missed?
+
+The answer is 99.95%.
 
 ```{r}
 #| include: TRUE
 
-plot_read_distribution(coverage = 138,
+plot_read_distribution(coverage = 200,
                        vaf = 10,
                        calling_threshold = 4)
 
@@ -365,20 +428,25 @@ plot_read_distribution(coverage = 138,
 
 But what if the true VAF was only 2%?
 
-Then we'd be in trouble, because at 138X the chance of detecting the variant would be pretty low.
+Then we'd be in trouble, because our VAF threshold is set at 4%, and at 
+200X the chance of detecting the variant would be pretty low anyway.
 
-This means it would be a really bad idea to issue a normal report and say that we had excluded variants down to 2% VAF, because if a variant was present at a true VAF of 2% there is only a 5.98% chance that we would detect it.
+This means it would be a really bad idea to issue a normal report and say that 
+we had excluded variants down to 2% VAF, because if a variant was present at a 
+true VAF of 2% there is only a 4.93% chance that we would detect it.
 
 ```{r}
 #| include: TRUE
 
-plot_read_distribution(coverage = 138,
+plot_read_distribution(coverage = 200,
                        vaf = 2,
                        calling_threshold = 4)
 
 ```
 
-Instead, to get over 99.5% confidence of detecting a variant with only 2% true VAF, we would have to lower the VAF detection threshold to 1% and increase the coverage to 1000X.
+Instead, to get over 99.5% confidence of detecting a variant with only 2% true 
+VAF, we would have to lower the VAF detection threshold to 1% and increase 
+the coverage to 1000X.
 
 ```{r}
 #| include: TRUE
@@ -389,7 +457,14 @@ plot_read_distribution(coverage = 1000,
 
 ```
 
-# Appendix
+# Conclusion
+
+Binomial statistics is really useful for estimating the confidence with which 
+we can detect genetic variants with NGS under different scenarios.
+If you have spotted an error in this blog-post, or have any comments, feel free
+to let me know.
+
+# Appendix {#sec-appendix}
 
 ## Binomial probability equation
 
@@ -448,41 +523,5 @@ This gives the same results as using the `dbinom` function.
 #| label: full-worked-example-with-dbinom
 
 dbinom(x, n, p)
-
-```
-
-## Where did 138X originally come from?
-
-The reality is that 138X was decided as a coverage threshold in previous validations, and it is simpler to keep things the same.
-
-However, there have been two separate justifications for 138X as a threshold.
-
-The original way 138X was decided on was by asking what coverage was required to confidently *exclude* a variant with a true VAF of 4%.
-
-If you start by saying that you require at least 2 reads to clinically report a variant, then a variant present in only 1 read should not be reported.
-
-You can then calculate the VAF of 1 variant read at different coverage levels, including the 95% confidence limits, as shown in the table below.
-The key row is where the upper 95% confidence threshold is just below 4%, which is at 138X.
-
-```{r}
-#| label: binom-test
-
-data_df <- data.frame(
-  total_reads = c(50, 100, 138, 150, 200, 278, 300)) |> 
-  mutate(variant_reads = 1,
-         vaf = round((variant_reads / total_reads)*100,2)) |> 
-  rowwise() |> 
-  mutate(
-    conf_upper = round((binom.test(x = variant_reads,
-                                   n = total_reads)$conf.int[2])*100, 2),
-    conf_lower = round((binom.test(x = variant_reads,
-                                   n = total_reads)$conf.int[1])*100, 2)) |> 
-  rename("Total reads" = total_reads,
-         "Variant reads" = variant_reads,
-         "VAF (%)" = vaf,
-         "VAF 95% confidence upper" = conf_upper,
-         "VAF 95% confidence lower" = conf_lower)
-
-knitr::kable(data_df)
 
 ```
