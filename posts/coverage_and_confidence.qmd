@@ -470,6 +470,9 @@ to let me know.
 
 Here is a breakdown of the original binomial probability equation, which is shown below.
 
+Full disclosure: I used Claude to generate this worked example, and then checked
+it in R to make sure it was correct.
+
 x = variant reads, n = coverage and p = true VAF.
 
 $$
